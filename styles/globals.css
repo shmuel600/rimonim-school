@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  font-family: Assistant, Tahoma, sans-serif;
+  font-size: large;
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: whitesmoke;
+  /* color: rgb(59, 59, 59); */
+}
+
+button {
+  font-family: Assistant, Tahoma, sans-serif;
+  font-size: large;
+  background-color: transparent;
+  border: 0px solid transparent;
+  transition-duration: 0.4s;
+  margin: 0 0.2rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: rgba(60, 60, 60, 0.15);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 650px) {
+  button {
+    font-size: small;
+    margin: 0 0.02rem;
+    padding: 0.2rem 0.3rem;
+  }
+}

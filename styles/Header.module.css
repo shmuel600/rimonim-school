@@ -1,0 +1,81 @@
+.header {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  width: 100%;
+  position: fixed;
+  top: 0;
+}
+
+.useTabs>button {
+  margin: 0;
+  font-weight: 600;
+  color: white;
+  border-bottom: 4px solid transparent;
+  border-radius: 0;
+  transition-delay: 0.2s;
+}
+
+.useTabs>button:hover {
+  background-color: transparent;
+  border-bottom: 4px solid white;
+  transition-delay: 0s !important;
+}
+
+.menu button {
+  color: black;
+  transition-duration: 0.4s;
+  /* color: rgb(59, 59, 59); */
+}
+
+.showBackground button {
+  /* background-color: transparent; */
+  color: black;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.showBackground {
+  background-color: whitesmoke;
+  transition-duration: 0.4s;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  position: absolute;
+  top: 3.5rem;
+  border-radius: 5px;
+  padding: 0.5rem;
+  background-color: whitesmoke;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.menu button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.1rem;
+}
+
+.menuWrap {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 300px;
+}
+
+.menuWrap button {
+  width: inherit;
+  border: 1px solid lightgray;
+  flex-grow: 1;
+}
