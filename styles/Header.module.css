@@ -9,54 +9,52 @@
   top: 0;
 }
 
-.useTabs>button {
+.openMenu>*,
+.headerButton {
+  font-family: Assistant, Helvetica, Arial, sans-serif;
+  font-size: large;
+  background-color: transparent;
+  border: 0px solid transparent;
+  transition-duration: 0.4s;
+  margin: 0 0.2rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 5px;
+}
+
+.openMenu>*:hover,
+.headerButton:hover {
+  background-color: rgba(60, 60, 60, 0.15);
+  cursor: pointer;
+}
+
+.isHomePage>.openMenu>*,
+.isHomePage>.headerButton {
   margin: 0;
   font-weight: 600;
   color: white;
   border-bottom: 4px solid transparent;
   border-radius: 0;
   transition-delay: 0.2s;
-  /* transform: scaleX(0.1); */
-  /* display: inline-block !important;
-  clip-path: inset(0); */
 }
 
-.useTabs>button:hover {
+.isHomePage>.openMenu>*:hover,
+.isHomePage>.headerButton:hover {
   background-color: transparent;
   border-bottom: 4px solid white;
   transition-delay: 0s !important;
-  /* transform: scaleX(1); */
 }
 
-/* .useTabs>button::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: 16%;
-  left: 0;
-  right: 0;
-  transform: scaleX(0);
-  transition: transform 0.25s ease-out;
-  border-bottom: 4px solid white;
-}
 
-.useTabs>button:hover::after {
-  transform: scaleX(1);
-} */
-
-.menu button {
+.openMenu>* {
   color: black;
   transition-duration: 0.4s;
-  /* color: rgb(59, 59, 59); */
 }
 
-.showBackground button {
-  /* background-color: transparent; */
+.showBackground .headerButton {
   color: black;
 }
 
-.center {
+.headerButton {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,7 +66,7 @@
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
-.menu {
+.openMenu {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -81,22 +79,37 @@
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
-.menu button {
+.openMenu>* {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   margin: 0.1rem;
 }
 
-.menuWrap {
+.withBorder {
   flex-direction: row-reverse;
   justify-content: space-between;
   flex-wrap: wrap;
   max-width: 300px;
 }
 
-.menuWrap button {
+.withBorder>* {
+  /* adds borders to open menu buttons */
   width: inherit;
   border: 1px solid lightgray;
   flex-grow: 1;
+}
+
+@media screen and (max-width: 650px) {
+  .openMenu>* {
+    font-size: small;
+    margin: 0 0.02rem;
+    padding: 0.2rem 0.3rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .logo {
+    display: none;
+  }
 }

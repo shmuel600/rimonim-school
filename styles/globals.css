@@ -14,7 +14,9 @@ body {
   /* color: rgb(59, 59, 59); */
 }
 
-button {
+/* 
+button,
+span {
   font-family: Assistant, Helvetica, Arial, sans-serif;
   font-size: large;
   background-color: transparent;
@@ -25,7 +27,8 @@ button {
   border-radius: 5px;
 }
 
-button:hover {
+button:hover,
+span:hover {
   background-color: rgba(60, 60, 60, 0.15);
   cursor: pointer;
 }
@@ -36,4 +39,4 @@ button:hover {
     margin: 0 0.02rem;
     padding: 0.2rem 0.3rem;
   }
-}
+} */

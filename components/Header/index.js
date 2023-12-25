@@ -8,9 +8,9 @@ import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDown
 export default function Header() {
     const [menu, setMenu] = React.useState('')
     const router = useRouter()
-    const { asPath } = useRouter()
+    const { asPath: path } = useRouter()
     const pageTop = React.useRef()
-    const showBackground = !useVisible(pageTop) || asPath !== '/'
+    const showBackground = !useVisible(pageTop) || path !== '/'
 
     const setPage = (page) => {
         router.push(page)
@@ -23,32 +23,34 @@ export default function Header() {
             <div
                 className={`
                 ${styles.header} 
-                ${asPath === '/' && styles.useTabs} 
+                ${path === '/' && styles.isHomePage} 
                 ${showBackground && styles.showBackground}
                 `}
                 onMouseLeave={() => setMenu('')}
             >
 
                 <Image alt="" width={50} height={50}
+                    className={styles.logo}
                     src="/rimonim_logo_web_white.png"
                     style={{ margin: '0 0.5rem', cursor: 'pointer' }}
                     onClick={() => setPage('/')}
                 />
 
-                <button
+                <span
                     onClick={() => setPage('/')}
                     onMouseOver={() => setMenu('')}
+                    className={styles.headerButton}
                 >
                     דף הבית
-                </button>
+                </span>
 
-                <button
+                <span
                     onMouseOver={() => setMenu('אודות')}
-                    className={styles.center}>
+                    className={styles.headerButton}>
                     <KeyboardArrowDownOutlinedIcon sx={{ fontSize: '16px', m: 0, p: 0, pr: 0.5 }} />
                     אודות
                     {menu === 'אודות' &&
-                        <div className={styles.menu}>
+                        <div className={styles.openMenu}>
                             <button onClick={() => setPage('/about/principal')}>
                                 דבר המנהלת
                             </button>
@@ -66,15 +68,15 @@ export default function Header() {
                             </button>
                         </div>
                     }
-                </button>
+                </span>
 
-                <button
+                <span
                     onMouseOver={() => setMenu('אתרי הכיתות')}
-                    className={styles.center}>
+                    className={styles.headerButton}>
                     <KeyboardArrowDownOutlinedIcon sx={{ fontSize: '16px', m: 0, p: 0, pr: 0.5 }} />
                     אתרי הכיתות
                     {menu === 'אתרי הכיתות' &&
-                        <div className={styles.menu}>
+                        <div className={styles.openMenu}>
                             <button>
                                 כיתה א 1
                             </button>
@@ -98,16 +100,16 @@ export default function Header() {
                             </button>
                         </div>
                     }
-                </button>
+                </span>
 
                 {/* show only 'התחברות' or 'חומרי לימוד' */}
-                <button
+                <span
                     onMouseOver={() => setMenu('חומרי לימוד')}
-                    className={styles.center}>
+                    className={styles.headerButton}>
                     <KeyboardArrowDownOutlinedIcon sx={{ fontSize: '16px', m: 0, p: 0, pr: 0.5 }} />
                     חומרי לימוד
                     {menu === 'חומרי לימוד' &&
-                        <div className={`${styles.menu} ${styles.menuWrap}`}>
+                        <div className={`${styles.openMenu} ${styles.withBorder}`}>
                             <button>
                                 חינוך לשוני
                             </button>
@@ -155,11 +157,13 @@ export default function Header() {
                             </button>
                         </div>
                     }
-                </button>
+                </span>
 
-                {/* <button onMouseOver={() => setMenu('')}>
+                <span
+                    onMouseOver={() => setMenu('')}
+                    className={styles.headerButton}>
                     התחברות
-                </button> */}
+                </span>
 
             </div>
         </>
