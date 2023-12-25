@@ -4,13 +4,12 @@ import Footer from '@/components/Footer'
 import * as React from 'react'
 import { useVisible } from '@/hooks/useVisible'
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
-import Image from 'next/image'
 
 
 export default function Home() {
 
   const updates = React.useRef()
-  const isUpgradesVisible = useVisible(updates)
+  const isUpdatesVisible = useVisible(updates)
 
   return (
     <main className={styles.main}>
@@ -19,25 +18,13 @@ export default function Home() {
 
       <Header />
 
-      {/* <Image alt="" width={100} height={100}
-        src="/rimonim_logo_web_white.png"
-        style={{
-          position: 'fixed',
-          top: '4rem',
-          right: '2rem'
-        }}
-      /> */}
-
       <div className={styles.picture}>
         <h1 style={{ fontSize: '44px' }}>
           בית הספר רימונים באר שבע
         </h1>
-        {/* <Image alt="" width={250} height={250}
-          src="/rimonim_logo_web_white.png"
-        /> */}
       </div>
 
-      {!isUpgradesVisible &&
+      {!isUpdatesVisible &&
         <div
           style={{ display: 'flex', justifyContent: 'center', transitionDuration: '0.4s', cursor: 'pointer' }}
           onClick={() => updates.current.scrollIntoView({ behavior: "smooth" })}
