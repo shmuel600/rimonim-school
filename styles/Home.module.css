@@ -23,11 +23,31 @@
   background-size: cover;
   background-position: center;
   min-width: 100vw;
-  min-height: 100vh;
+  min-height: 100.5vh;
 }
 
 .shadow {
   box-shadow: 0 0 60px 50px rgba(0, 0, 0, 0.75);
   position: absolute;
   width: 100%;
+}
+
+.arrowDown {
+  animation: mover 0.5s infinite alternate;
+}
+
+@keyframes mover {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .picture {
+    padding-bottom: 12rem;
+  }
 }

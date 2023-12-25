@@ -1,9 +1,9 @@
 import styles from '@/styles/Header.module.css'
 import Image from 'next/image'
-import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
 import * as React from 'react'
 import { useRouter } from 'next/router'
 import { useVisible } from '@/hooks/useVisible'
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
 
 export default function Header() {
     const [menu, setMenu] = React.useState('')
@@ -19,23 +19,6 @@ export default function Header() {
     return (
         <>
             <div ref={pageTop}></div>
-            {!showBackground &&
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <h2 style={{
-                        position: 'fixed',
-                        bottom: '10%',
-                        color: 'white',
-                    }}>
-                        עדכונים שוטפים
-                    </h2>
-                    <KeyboardArrowDownOutlinedIcon sx={{
-                        fontSize: '60px',
-                        position: 'fixed',
-                        bottom: '2%',
-                        color: 'white',
-                    }} />
-                </div>
-            }
 
             <div
                 className={`
@@ -62,7 +45,7 @@ export default function Header() {
                 <button
                     onMouseOver={() => setMenu('אודות')}
                     className={styles.center}>
-                    <KeyboardArrowDownOutlinedIcon sx={{ fontSize: 'small', m: 0, p: 0, mt: 0.5, pr: 0.5 }} />
+                    <KeyboardArrowDownOutlinedIcon sx={{ fontSize: '16px', m: 0, p: 0, pr: 0.5 }} />
                     אודות
                     {menu === 'אודות' &&
                         <div className={styles.menu}>
@@ -88,7 +71,7 @@ export default function Header() {
                 <button
                     onMouseOver={() => setMenu('אתרי הכיתות')}
                     className={styles.center}>
-                    <KeyboardArrowDownOutlinedIcon sx={{ fontSize: 'small', m: 0, p: 0, mt: 0.5, pr: 0.5 }} />
+                    <KeyboardArrowDownOutlinedIcon sx={{ fontSize: '16px', m: 0, p: 0, pr: 0.5 }} />
                     אתרי הכיתות
                     {menu === 'אתרי הכיתות' &&
                         <div className={styles.menu}>
@@ -121,7 +104,7 @@ export default function Header() {
                 <button
                     onMouseOver={() => setMenu('חומרי לימוד')}
                     className={styles.center}>
-                    <KeyboardArrowDownOutlinedIcon sx={{ fontSize: 'small', m: 0, p: 0, mt: 0.5, pr: 0.5 }} />
+                    <KeyboardArrowDownOutlinedIcon sx={{ fontSize: '16px', m: 0, p: 0, pr: 0.5 }} />
                     חומרי לימוד
                     {menu === 'חומרי לימוד' &&
                         <div className={`${styles.menu} ${styles.menuWrap}`}>
@@ -174,9 +157,9 @@ export default function Header() {
                     }
                 </button>
 
-                <button onMouseOver={() => setMenu('')}>
+                {/* <button onMouseOver={() => setMenu('')}>
                     התחברות
-                </button>
+                </button> */}
 
             </div>
         </>

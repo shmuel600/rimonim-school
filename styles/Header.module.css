@@ -16,13 +16,34 @@
   border-bottom: 4px solid transparent;
   border-radius: 0;
   transition-delay: 0.2s;
+  /* transform: scaleX(0.1); */
+  /* display: inline-block !important;
+  clip-path: inset(0); */
 }
 
 .useTabs>button:hover {
   background-color: transparent;
   border-bottom: 4px solid white;
   transition-delay: 0s !important;
+  /* transform: scaleX(1); */
 }
+
+/* .useTabs>button::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 16%;
+  left: 0;
+  right: 0;
+  transform: scaleX(0);
+  transition: transform 0.25s ease-out;
+  border-bottom: 4px solid white;
+}
+
+.useTabs>button:hover::after {
+  transform: scaleX(1);
+} */
 
 .menu button {
   color: black;
