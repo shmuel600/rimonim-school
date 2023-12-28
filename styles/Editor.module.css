@@ -1,0 +1,29 @@
+.quill {
+  width: 100%;
+  height: 65vh;
+  margin: 3vh;
+}
+
+.quill p,
+.preview {
+  direction: rtl;
+  text-align: start;
+  font-size: medium;
+  width: 100%;
+  font-family: Assistant, Helvetica, Arial, sans-serif;
+}
+
+.quill h1,
+.quill h2 {
+  text-align: right;
+}
+
+.quill textarea {
+  min-height: 30vh;
+  width: 100%;
+}
+
+.quill img,
+.preview img {
+  max-width: 600px !important;
+}

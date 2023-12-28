@@ -1,7 +1,32 @@
 import '@/styles/globals.css'
 import Head from 'next/head'
+import { SessionProvider } from "next-auth/react"
+import Context from '@/contexts/context'
+import * as React from 'react'
 
-export default function App({ Component, pageProps }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
+
+  const [pages, setPages] = React.useState([])
+
+  React.useEffect(() => {
+    const fetchPages = async () => {
+      try {
+        const fetchedPages = await fetch("/api/page", {
+          headers: { 'Content-Type': 'application/json' },
+        });
+        const json = await fetchedPages.json();
+        setPages(json);
+      }
+      catch (error) {
+        console.log(error.message);
+      }
+    }
+    fetchPages();
+  }, [])
+
   return (
     <>
 
@@ -11,7 +36,11 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Component {...pageProps} />
+      <Context.Provider value={{ pages }}>
+        <SessionProvider session={session}>
+          <Component {...pageProps} />
+        </SessionProvider>
+      </Context.Provider >
 
     </>
   )

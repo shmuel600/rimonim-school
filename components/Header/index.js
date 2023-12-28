@@ -1,16 +1,46 @@
+'use client'
 import styles from '@/styles/Header.module.css'
 import Image from 'next/image'
 import * as React from 'react'
+import Context from '@/contexts/context'
 import { useRouter } from 'next/router'
 import { useVisible } from '@/hooks/useVisible'
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
+import { signIn, signOut, useSession } from "next-auth/react"
 
 export default function Header() {
+    const { data: session } = useSession()
+    const { pages } = React.useContext(Context);
     const [menu, setMenu] = React.useState('')
+    const [user, setUser] = React.useState()
     const router = useRouter()
     const { asPath: path } = useRouter()
     const pageTop = React.useRef()
-    const showBackground = !useVisible(pageTop) || path !== '/'
+    const hideHeaderBackground = useVisible(pageTop) && path === '/'
+
+
+    React.useEffect(() => {
+        const signUserIn = async () => {
+            const userDetails = {
+                name: session?.user?.name,
+                email: session?.user?.email,
+                image: session?.user?.image,
+            }
+            try {
+                const fetchedUser = await fetch("/api/user", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(userDetails)
+                });
+                const json = await fetchedUser.json();
+                setUser(json);
+            }
+            catch (error) {
+                console.log(error.message, "could_not_create_user");
+            }
+        }
+        session?.user && !user && signUserIn();
+    }, [session, user])
 
     const setPage = (page) => {
         router.push(page)
@@ -24,7 +54,7 @@ export default function Header() {
                 className={`
                 ${styles.header} 
                 ${path === '/' && styles.isHomePage} 
-                ${showBackground && styles.showBackground}
+                ${!hideHeaderBackground && styles.showBackground}
                 `}
                 onMouseLeave={() => setMenu('')}
             >
@@ -51,21 +81,18 @@ export default function Header() {
                     אודות
                     {menu === 'אודות' &&
                         <div className={styles.openMenu}>
-                            <button onClick={() => setPage('/about/principal')}>
-                                דבר המנהלת
-                            </button>
-                            <button onClick={() => setPage('/about/counselor')}>
-                                דבר היועצת
-                            </button>
-                            <button onClick={() => setPage('/about/image')}>
-                                תדמית בית הספר
-                            </button>
-                            <button onClick={() => setPage('/about/vision')}>
-                                חזון בית הספר
-                            </button>
-                            <button onClick={() => setPage('/about/school')}>
-                                על בית הספר
-                            </button>
+                            {
+                                pages.length > 0 && pages
+                                    .filter(page => page.type === 'about')
+                                    .map(page =>
+                                        <button
+                                            key={page._id}
+                                            onClick={() => setPage(`/about/${page.name}`)}
+                                        >
+                                            {page.name}
+                                        </button>
+                                    )
+                            }
                         </div>
                     }
                 </span>
@@ -77,32 +104,23 @@ export default function Header() {
                     אתרי הכיתות
                     {menu === 'אתרי הכיתות' &&
                         <div className={styles.openMenu}>
-                            <button>
-                                כיתה א 1
-                            </button>
-                            <button>
-                                כיתה א 2
-                            </button>
-                            <button>
-                                כיתה א 3
-                            </button>
-                            <button>
-                                כיתה א 4
-                            </button>
-                            <button>
-                                כיתה א 5
-                            </button>
-                            <button>
-                                כיתה א 6
-                            </button>
-                            <button>
-                                כיתה א 7
-                            </button>
+                            {
+                                pages && pages
+                                    .filter(page => page.type === 'class')
+                                    .map(page =>
+                                        <button
+                                            key={page._id}
+                                            onClick={() => setPage(`/class/${page.name}`)}
+                                        >
+                                            {page.name}
+                                        </button>
+                                    )
+                            }
                         </div>
                     }
                 </span>
 
-                {/* show only 'התחברות' or 'חומרי לימוד' */}
+                {/* show 'חומרי לימוד' only if user has any permission*/}
                 <span
                     onMouseOver={() => setMenu('חומרי לימוד')}
                     className={styles.headerButton}>
@@ -110,60 +128,56 @@ export default function Header() {
                     חומרי לימוד
                     {menu === 'חומרי לימוד' &&
                         <div className={`${styles.openMenu} ${styles.withBorder}`}>
-                            <button>
-                                חינוך לשוני
-                            </button>
-                            <button>
-                                חינוך מתמטי
-                            </button>
-                            <button>
-                                מדע וטכנולוגיה
-                            </button>
-                            <button>
-                                תקשוב
-                            </button>
-                            <button>
-                                זהירות בדרכים
-                            </button>
-                            <button>
-                                מקצועות טיפוליים
-                            </button>
-                            <button>
-                                כישורי חיים
-                            </button>
-                            <button>
-                                חינוך גופני
-                            </button>
-                            <button>
-                                אומנות
-                            </button>
-                            <button>
-                                מוסיקה
-                            </button>
-                            <button>
-                                חגים
-                            </button>
-                            <button>
-                                מפתח הלב
-                            </button>
-                            <button>
-                                בריאות
-                            </button>
-                            <button>
-                                האחר הוא אני
-                            </button>
-                            <button>
-                                אתרים כלליים
-                            </button>
+                            {
+                                pages && pages
+                                    .filter(page => page.type === 'material')
+                                    .map(page =>
+                                        <button
+                                            key={page._id}
+                                            onClick={() => setPage(`/study-material/${page.name}`)}
+                                        >
+                                            {page.name}
+                                        </button>
+                                    )
+                            }
                         </div>
                     }
                 </span>
 
-                <span
-                    onMouseOver={() => setMenu('')}
-                    className={styles.headerButton}>
-                    התחברות
-                </span>
+                {
+                    session ?
+                        <div
+                            className={styles.userDetails}
+                        >
+                            <Image src={session?.user?.image} alt="" width={50} height={50} style={{ borderRadius: '50%', marginRight: '1rem' }} />
+                            <div>
+                                <div>{session?.user?.name}</div>
+                                <div>
+                                    <button
+                                        onClick={() => setPage(`/admin`)}
+                                    >
+                                        ניהול הרשאות
+                                    </button>
+                                </div>
+                                <div>
+                                    <button
+                                        onClick={() => signOut('google')}
+                                    >
+                                        התנתק
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        :
+                        <span
+                            onClick={() => signIn('google')}
+                            onMouseOver={() => setMenu('')}
+                            className={styles.headerButton}
+                        >
+                            התחברות
+                        </span>
+                }
+
 
             </div>
         </>

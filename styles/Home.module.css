@@ -16,6 +16,7 @@
   align-items: center;
   color: white;
   padding: 6rem;
+  padding-bottom: 25vh;
   background-image: url("https://www.bigissuenorth.com/wp-content/uploads/2018/09/shutterstock_303888209_bigissuenorth.jpg");
   background-attachment: fixed;
   background-blend-mode: overlay;
@@ -24,6 +25,38 @@
   background-position: center;
   min-width: 100vw;
   min-height: 100.5vh;
+}
+
+.picture h1 {
+  animation: floatup 1.5s;
+}
+
+@keyframes floatup {
+  0% {
+    transform: translateY(1.5rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.intro {
+  position: fixed;
+  z-index: 1000;
+  animation: fadeout 1.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 100%;
+  }
+
+  100% {
+    opacity: 0%;
+    display: none;
+  }
 }
 
 .shadow {
