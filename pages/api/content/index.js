@@ -6,16 +6,17 @@ const handler = async (req, res) => {
 
     if (req.method === 'POST') {
 
-        const { pageId, pageName } = req.body;
+        const { pageId, pageName, tab } = req.body;
 
-        if (pageId && pageName) {
-            const existingPageContent = await Content.findOne({ _id: pageId })
+        if (pageId && pageName && tab) {
+            const existingPageContent = await Content.findOne({ pageId, tab })
             try {
                 if (existingPageContent) return res.status(200).send(existingPageContent);
                 else {
                     const pageContent = new Content({
-                        _id: pageId,
+                        pageId,
                         pageName,
+                        tab,
                         content: ''
                     });
                     const content = await pageContent.save();

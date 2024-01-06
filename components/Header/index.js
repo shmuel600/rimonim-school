@@ -6,18 +6,17 @@ import Context from '@/contexts/context'
 import { useRouter } from 'next/router'
 import { useVisible } from '@/hooks/useVisible'
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
-import { signIn, signOut, useSession } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
+import UserDetails from './UserDetails'
 
 export default function Header() {
     const { data: session } = useSession()
-    const { pages } = React.useContext(Context);
+    const { pages, user, setUser, permissions } = React.useContext(Context);
     const [menu, setMenu] = React.useState('')
-    const [user, setUser] = React.useState()
     const router = useRouter()
     const { asPath: path } = useRouter()
     const pageTop = React.useRef()
     const hideHeaderBackground = useVisible(pageTop) && path === '/'
-
 
     React.useEffect(() => {
         const signUserIn = async () => {
@@ -40,7 +39,7 @@ export default function Header() {
             }
         }
         session?.user && !user && signUserIn();
-    }, [session, user])
+    }, [session, user, setUser])
 
     const setPage = (page) => {
         router.push(page)
@@ -62,12 +61,16 @@ export default function Header() {
                 <Image alt="" width={50} height={50}
                     className={styles.logo}
                     src="/rimonim_logo_web_white.png"
+                    priority={true}
                     style={{ margin: '0 0.5rem', cursor: 'pointer' }}
                     onClick={() => setPage('/')}
                 />
 
                 <span
-                    onClick={() => setPage('/')}
+                    onClick={() => {
+                        setPage('/')
+                        setMenu('')
+                    }}
                     onMouseOver={() => setMenu('')}
                     className={styles.headerButton}
                 >
@@ -87,7 +90,10 @@ export default function Header() {
                                     .map(page =>
                                         <button
                                             key={page._id}
-                                            onClick={() => setPage(`/about/${page.name}`)}
+                                            onClick={() => {
+                                                setPage(`/about/${page.name}`)
+                                                setMenu('')
+                                            }}
                                         >
                                             {page.name}
                                         </button>
@@ -110,7 +116,10 @@ export default function Header() {
                                     .map(page =>
                                         <button
                                             key={page._id}
-                                            onClick={() => setPage(`/class/${page.name}`)}
+                                            onClick={() => {
+                                                setPage(`/class/${page.name}`)
+                                                setMenu('')
+                                            }}
                                         >
                                             {page.name}
                                         </button>
@@ -121,53 +130,38 @@ export default function Header() {
                 </span>
 
                 {/* show 'חומרי לימוד' only if user has any permission*/}
-                <span
-                    onMouseOver={() => setMenu('חומרי לימוד')}
-                    className={styles.headerButton}>
-                    <KeyboardArrowDownOutlinedIcon sx={{ fontSize: '16px', m: 0, p: 0, pr: 0.5 }} />
-                    חומרי לימוד
-                    {menu === 'חומרי לימוד' &&
-                        <div className={`${styles.openMenu} ${styles.withBorder}`}>
-                            {
-                                pages && pages
-                                    .filter(page => page.type === 'material')
-                                    .map(page =>
-                                        <button
-                                            key={page._id}
-                                            onClick={() => setPage(`/study-material/${page.name}`)}
-                                        >
-                                            {page.name}
-                                        </button>
-                                    )
-                            }
-                        </div>
-                    }
-                </span>
+                {
+                    permissions &&
+                    <span
+                        onMouseOver={() => setMenu('חומרי לימוד')}
+                        className={styles.headerButton}>
+                        <KeyboardArrowDownOutlinedIcon sx={{ fontSize: '16px', m: 0, p: 0, pr: 0.5 }} />
+                        חומרי לימוד
+                        {menu === 'חומרי לימוד' &&
+                            <div className={`${styles.openMenu} ${styles.withBorder}`}>
+                                {
+                                    pages && pages
+                                        .filter(page => page.type === 'study-material')
+                                        .map(page =>
+                                            <button
+                                                key={page._id}
+                                                onClick={() => {
+                                                    setPage(`/study-material/${page.name}`)
+                                                    setMenu('')
+                                                }}
+                                            >
+                                                {page.name}
+                                            </button>
+                                        )
+                                }
+                            </div>
+                        }
+                    </span>
+                }
 
                 {
                     session ?
-                        <div
-                            className={styles.userDetails}
-                        >
-                            <Image src={session?.user?.image} alt="" width={50} height={50} style={{ borderRadius: '50%', marginRight: '1rem' }} />
-                            <div>
-                                <div>{session?.user?.name}</div>
-                                <div>
-                                    <button
-                                        onClick={() => setPage(`/admin`)}
-                                    >
-                                        ניהול הרשאות
-                                    </button>
-                                </div>
-                                <div>
-                                    <button
-                                        onClick={() => signOut('google')}
-                                    >
-                                        התנתק
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <UserDetails session={session} setPage={setPage} />
                         :
                         <span
                             onClick={() => signIn('google')}

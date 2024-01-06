@@ -1,14 +1,36 @@
-'use client';
+'use client'
+import Fab from '@mui/material/Fab'
+import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded'
+import DoneRoundedIcon from '@mui/icons-material/DoneRounded'
+import styles from '@/styles/Editor.module.css'
 
-export default function StartEditButton({ setIsActive }) {
+export default function StartEditButton({ isEditingActive, setIsEditingActive, handleSave }) {
     return (
         <>
-            <div
-                onClick={() => setIsActive(true)}
-                style={{ position: 'fixed', bottom: '3rem', right: '3rem', background: 'blue', borderRadius: '50%', width: '3rem', height: '3rem' }}
-            >
-
-            </div>
+            {
+                isEditingActive ?
+                    <Fab
+                        className={styles.fabDoneEdit}
+                        onClick={handleSave}
+                        sx={{ position: 'fixed', left: '1rem', bottom: '3rem' }}
+                        size="medium"
+                        color="primary"
+                        aria-label="start editing"
+                    >
+                        <DoneRoundedIcon />
+                    </Fab>
+                    :
+                    <Fab
+                        className={styles.fabStartEdit}
+                        onClick={() => setIsEditingActive(true)}
+                        sx={{ position: 'fixed', left: '1rem', bottom: '3rem' }}
+                        size="medium"
+                        color="primary"
+                        aria-label="start editing"
+                    >
+                        <EditNoteRoundedIcon />
+                    </Fab>
+            }
         </>
     )
 }

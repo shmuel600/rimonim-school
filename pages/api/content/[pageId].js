@@ -3,11 +3,12 @@ import Content from "@/models/content"
 
 const handler = async (req, res) => {
 
-    const { id } = req.query;
+    const { pageId } = req.query;
+    const { content, tab } = req.body;
 
     if (req.method === 'PATCH') {
         try {
-            const updatedContent = await Content.findByIdAndUpdate(id, req.body);
+            const updatedContent = await Content.findOneAndUpdate({ pageId, tab }, { content })
             return res.status(200).send(updatedContent);
         }
         catch (error) {
@@ -17,7 +18,7 @@ const handler = async (req, res) => {
 
     else if (req.method === 'GET') {
         try {
-            const content = await Content.findById(id);
+            const content = await Content.findOne({ pageId, tab });
             return res.status(200).send(content);
         }
         catch (error) {

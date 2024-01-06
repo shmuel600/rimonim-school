@@ -2,8 +2,9 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const content = new Schema({
-    _id: { type: Schema.Types.ObjectId },
+    pageId: { type: Schema.Types.ObjectId },
     pageName: { type: String },
+    tab: { type: String },
     content: { type: String },
 });
 

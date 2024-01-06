@@ -18,8 +18,6 @@ const handler = async (req, res) => {
                     const pageDetails = new Page({
                         name,
                         type,
-                        permissions: null,
-                        content: null,
                     });
                     const page = await pageDetails.save();
                     return res.status(200).send(page);

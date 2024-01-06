@@ -11,17 +11,7 @@ const handler = async (req, res) => {
             return res.status(200).send(updatedUser);
         }
         catch (error) {
-            return res.status(500).send("user_patch", error.message);
-        }
-    }
-
-    else if (req.method === 'GET') {
-        try {
-            const user = await User.findById(id);
-            return res.status(200).send(user);
-        }
-        catch (error) {
-            return res.status(500).send("user_get", error.message);
+            return res.status(500).send("user_id_patch", error.message);
         }
     }
 
