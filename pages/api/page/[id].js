@@ -8,7 +8,8 @@ const handler = async (req, res) => {
     if (req.method === 'GET') {
         try {
             const user = await User.findOne({ permissions: pageId });
-            return res.status(200).send(user);
+            if (user) return res.status(200).send(user);
+            else return res.status(200).send({ name: '' });
         }
         catch (error) {
             return res.status(500).send("user_pageId_get", error.message);

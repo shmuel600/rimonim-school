@@ -40,17 +40,50 @@ export default function Admin() {
             router.replace('/')
     }, [permissions, router])
 
+    const updateUserPermissions = async (user, permissions) => {
+        try {
+            await fetch(`/api/user/${user._id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ permissions })
+            });
+            refreshUsers()
+        }
+        catch (error) {
+            console.log(error.message, "could_not_update_permissions");
+        }
+    }
+
+    const refreshUsers = async () => {
+        try {
+            const fetchedUsers = await fetch("/api/user", {
+                headers: { 'Content-Type': 'application/json' },
+            });
+            const json = await fetchedUsers.json();
+            setUsers(json);
+        }
+        catch (error) {
+            console.log(error.message);
+        }
+    }
+
     return (
         <main className={styles.main}>
             <div ref={pageTop}></div>
             <AdminHeader activeTab={activeTab} setActiveTab={setActiveTab} />
 
             <div className={styles.page}>
+                נשאר: עריכת שם כיתה, הוספת כיתה, מחיקת כיתה, גלריה
                 <div hidden={activeTab !== 0} style={{ minWidth: 'min(600px, 80%)' }}>
-                    <PagesPermissions pages={pages} users={users} setUsers={setUsers} pageTop={pageTop} />
+                    <PagesPermissions
+                        pages={pages}
+                        users={users}
+                        pageTop={pageTop}
+                        updateUserPermissions={updateUserPermissions}
+                    />
                 </div>
-                <div hidden={activeTab !== 1}>
-                    <Users users={users} />
+                <div hidden={activeTab !== 1} style={{ minWidth: 'min(600px, 80%)' }}>
+                    <Users users={users} updateUserPermissions={updateUserPermissions} />
                 </div>
                 <div hidden={activeTab !== 2}>
                     <HomePageGallery />

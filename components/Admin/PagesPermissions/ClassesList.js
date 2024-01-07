@@ -1,3 +1,4 @@
+'use client'
 import styles from '@/styles/Admin.module.css'
 import * as React from 'react'
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
@@ -10,11 +11,12 @@ export default function ClassesList({
     setPreviouslyActiveRow,
     classPage,
     users,
-    setUsers,
-    pageTop
+    pageTop,
+    updateUserPermissions
 }) {
 
-    const [currentUser, setCurrentUser] = React.useState('')
+    const [chosenUser, setChosenUser] = React.useState('')
+    const [viewedUser, setViewedUser] = React.useState('')
 
     React.useEffect(() => {
         previouslyActiveRow.length > 0 && setTimeout(() => { setPreviouslyActiveRow('') }, 1000)
@@ -27,53 +29,30 @@ export default function ClassesList({
                     headers: { 'Content-Type': 'application/json' },
                 });
                 const json = await fetchedUser.json();
-                setCurrentUser(json.name)
+                setViewedUser(json.name)
             }
             catch (error) {
-                error.message !== "Unexpected end of JSON input" &&
-                    console.log("could not fetch user;", error.message);
+                console.log("could not fetch user;", error.message)
             }
         }
-        currentUser === '' && fetchUserByPageId()
-    }, [currentUser, classPage])
+        fetchUserByPageId()
+    }, [users, classPage])
 
-    const handleSave = (newValue, removedUser) => {
-        const chosenUser = newValue ? users.filter(user => user.name === newValue)[0]?.name : '';
-        setCurrentUser(chosenUser)
+    const handleSave = (chosenUserToSave, viewedUserToRemove) => {
+        if (chosenUserToSave !== '') {
+            handleUpdate(chosenUserToSave, classPage._id)
+            setChosenUser('')
+        }
+        if (viewedUserToRemove !== '') {
+            handleUpdate(viewedUserToRemove, null)
+        }
+        setViewedUser(chosenUserToSave)
         pageTop.current.scrollIntoView({ behavior: "smooth" })
-        if (chosenUser !== '') {
-            updateUserPermissions(chosenUser, classPage._id)
-        }
-        updateUserPermissions(removedUser, null)
     }
 
-    const updateUserPermissions = async (userName, permissions) => {
-        const userToUpdate = users.filter(user => user.name === userName)[0]
-        if (userToUpdate)
-            try {
-                await fetch(`/api/user/${userToUpdate._id}`, {
-                    method: 'PATCH',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ permissions })
-                });
-                refreshUsers()
-            }
-            catch (error) {
-                console.log(error.message, "could_not_update_permissions");
-            }
-    }
-
-    const refreshUsers = async () => {
-        try {
-            const fetchedUsers = await fetch("/api/user", {
-                headers: { 'Content-Type': 'application/json' },
-            });
-            const json = await fetchedUsers.json();
-            setUsers(json);
-        }
-        catch (error) {
-            console.log(error.message);
-        }
+    const handleUpdate = async (userName, permissions) => {
+        const user = users.filter(user => user.name === userName)[0]
+        if (user) updateUserPermissions(user, permissions)
     }
 
     return (
@@ -93,7 +72,7 @@ export default function ClassesList({
                                 {classPage.name}
                             </div>
                             <div>
-                                {currentUser}
+                                {viewedUser}
                             </div>
                         </div>
                         <KeyboardArrowDownOutlinedIcon
@@ -114,7 +93,9 @@ export default function ClassesList({
                     >
                         <SetPermissions
                             users={users}
-                            currentUser={currentUser}
+                            viewedUser={viewedUser}
+                            chosenUser={chosenUser}
+                            setChosenUser={setChosenUser}
                             handleSave={handleSave}
                             hideSaveButton={previouslyActiveRow === classPage.name}
                         />

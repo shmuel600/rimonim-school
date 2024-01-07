@@ -129,7 +129,6 @@ export default function Header() {
                     }
                 </span>
 
-                {/* show 'חומרי לימוד' only if user has any permission*/}
                 {
                     permissions &&
                     <span

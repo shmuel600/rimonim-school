@@ -2,7 +2,7 @@ import styles from '@/styles/Admin.module.css'
 import * as React from 'react'
 import ClassesList from './ClassesList'
 
-export default function PagesPermissions({ pages, users, setUsers, pageTop }) {
+export default function PagesPermissions({ pages, users, setUsers, pageTop, updateUserPermissions }) {
 
     const [activeRow, setActiveRow] = React.useState('')
     const [previouslyActiveRow, setPreviouslyActiveRow] = React.useState('')
@@ -26,13 +26,13 @@ export default function PagesPermissions({ pages, users, setUsers, pageTop }) {
                 <ClassesList
                     key={classPage._id}
                     users={users}
-                    setUsers={setUsers}
                     activeRow={activeRow}
                     setActiveRow={setActiveRow}
                     previouslyActiveRow={previouslyActiveRow}
                     setPreviouslyActiveRow={setPreviouslyActiveRow}
                     classPage={classPage}
                     pageTop={pageTop}
+                    updateUserPermissions={updateUserPermissions}
                 />
             )}
 

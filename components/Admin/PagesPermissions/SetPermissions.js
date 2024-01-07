@@ -5,21 +5,20 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
-export default function SetPermissions({ currentUser, users, handleSave, hideSaveButton }) {
+export default function SetPermissions({ viewedUser, chosenUser, setChosenUser, users, handleSave, hideSaveButton }) {
 
-    const [value, setValue] = React.useState('');
-
-    React.useEffect(() => { hideSaveButton && setValue('') }, [hideSaveButton])
+    // on accordion close, reset chosen user (so when opened again, default choice will be chosen)
+    // React.useEffect(() => { hideSaveButton && setChosenUser('') }, [hideSaveButton, setChosenUser])
 
     const handleChange = (event) => {
-        setValue(event.target.value);
+        setChosenUser(event.target.value);
     };
 
     return (
         <>
             <FormControl sx={{ direction: 'rtl' }} onClick={e => e.stopPropagation()}>
                 <RadioGroup
-                    value={value}
+                    value={chosenUser}
                     onChange={handleChange}
                 >
                     {
@@ -36,11 +35,11 @@ export default function SetPermissions({ currentUser, users, handleSave, hideSav
                             )
                     }
                     {
-                        currentUser !== '' &&
+                        viewedUser !== '' &&
                         <FormControlLabel
                             value=""
                             control={<Radio size="small" />}
-                            label={`${currentUser !== '' && `הסר את ${currentUser} ללא בחירה במחליף`}`}
+                            label={`${viewedUser !== '' && `הסר את ${viewedUser} ללא בחירה במחליף`}`}
                         />
                     }
                 </RadioGroup>
@@ -49,7 +48,7 @@ export default function SetPermissions({ currentUser, users, handleSave, hideSav
                 !hideSaveButton &&
                 <div
                     className={styles.savePermissions}
-                    onClick={() => { handleSave(value, currentUser) }}
+                    onClick={() => { handleSave(chosenUser, viewedUser) }}
                 >
                     עדכון הרשאות
                 </div>
