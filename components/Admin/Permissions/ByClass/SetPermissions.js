@@ -1,9 +1,10 @@
 import styles from '@/styles/Admin.module.css'
-import * as React from 'react';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
+import * as React from 'react'
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormControl from '@mui/material/FormControl'
+import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded'
 
 export default function SetPermissions({ viewedUser, chosenUser, setChosenUser, users, handleSave, hideSaveButton }) {
 
@@ -46,11 +47,15 @@ export default function SetPermissions({ viewedUser, chosenUser, setChosenUser, 
             </FormControl>
             {
                 !hideSaveButton &&
-                <div
-                    className={styles.savePermissions}
-                    onClick={() => { handleSave(chosenUser, viewedUser) }}
-                >
-                    עדכון הרשאות
+                <div className={styles.detailsButtonsContainer}>
+                    <div
+                        className={styles.detailsButton}
+                        style={{ margin: '1.5rem' }}
+                        onClick={() => { handleSave(chosenUser, viewedUser) }}
+                    >
+                        עדכון הרשאות
+                        <SyncAltRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1, mr: -0.5 }} />
+                    </div>
                 </div>
             }
         </>

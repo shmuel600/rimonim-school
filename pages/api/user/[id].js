@@ -5,7 +5,19 @@ const handler = async (req, res) => {
 
     const { id } = req.query;
 
-    if (req.method === 'PATCH') {
+    if (req.method === 'GET') {
+        // get user from page id
+        try {
+            const user = await User.findOne({ permissions: id });
+            if (user) return res.status(200).send(user);
+            else return res.status(200).send({ name: '' });
+        }
+        catch (error) {
+            return res.status(500).send("user_pageId_get", error.message);
+        }
+    }
+
+    else if (req.method === 'PATCH') {
         try {
             const updatedUser = await User.findByIdAndUpdate(id, req.body);
             return res.status(200).send(updatedUser);

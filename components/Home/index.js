@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import * as React from 'react'
 import { useVisible } from '@/hooks/useVisible'
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
+// import Image from 'next/image'
 
 const DynamicContent = dynamic(
     () => import('@/components/DynamicContent/DynamicContent'),
@@ -57,42 +58,48 @@ export default function Home() {
                     עדכונים שוטפים
                 </h1>
                 <br />
-                <br />
                 <DynamicContent pageName={'home'} pageType={'home'} viewStartEditButton={isUpdatesVisible} isHomePage={true} />
-                <br />
-                <br />
-                <br />
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    {/* <Image alt="" width={200} height={200}
+                        className={styles.logo}
+                        src="/rimonim_logo_web_colors.png"
+                        priority={true}
+                        style={{ opacity: 0.4 }}
+                        onClick={() => setPage('/')}
+                    /> */}
+                    <br />
+                    <br />
+                </div>
                 <div
-                    // className={styles.footer}
-                    style={{ padding: '2rem 12%', scrollMargin: '4rem', color: 'gray', direction: 'rtl' }}
+                    style={{ padding: '2rem 12%', scrollMargin: '4rem', color: 'gray', direction: 'rtl', zIndex: 1 }}
                 >
                     {
                         `
-                בית הספר עושה כל שביכולתו לשמירת זכות יוצרים וזכות הפרט בחומרים המצויים באתר הבית ספרי.
+                                    בית הספר עושה כל שביכולתו לשמירת זכות יוצרים וזכות הפרט בחומרים המצויים באתר הבית ספרי.
                         `
                     }
                     <br />
                     {
                         `
-                למרות המעקב העקבי והרצוף אחרי הפעילות באתר בית הספר, 
-                ייתכן שחומר או פריט מידע מסוים, 
-                שהועלה לאתר באמצעות עורכי משנה (מורים ו/או תלמידים), 
-                מפר באופן כלשהו את זכות היוצרים ו/או זכות הפרט. 
+                                    למרות המעקב העקבי והרצוף אחרי הפעילות באתר בית הספר, 
+                                    ייתכן שחומר או פריט מידע מסוים, 
+                                    שהועלה לאתר באמצעות עורכי משנה (מורים ו/או תלמידים), 
+                                    מפר באופן כלשהו את זכות היוצרים ו/או זכות הפרט.
                         `
                     }
                     <br />
                     {
                         `
-                כל פנייה בנדון תזכה למרב תשומת הלב ולפעולה מידית בהתאם לצורך.
+                                    כל פנייה בנדון תזכה למרב תשומת הלב ולפעולה מידית בהתאם לצורך.
                         `
                     }
                     <br />
                     {
                         `
-                בית הספר מתחייב להסיר כל פריט המפר זכות יוצרים ו/או זכות הפרט בזמן סביר ממועד קבלת הפנייה, 
-                לאחר שבדק ומצא שהיא מוצדקת, 
-                והוא מתחייב ליידע את האחראי להפרה זו ולהתריע בפניו על העלאת חומרים אלה, 
-                כדי למנוע הישנות מקרים שכאלה.
+                                    בית הספר מתחייב להסיר כל פריט המפר זכות יוצרים ו/או זכות הפרט בזמן סביר ממועד קבלת הפנייה, 
+                                    לאחר שבדק ומצא שהיא מוצדקת, 
+                                    והוא מתחייב ליידע את האחראי להפרה זו ולהתריע בפניו על העלאת חומרים אלה, 
+                                    כדי למנוע הישנות מקרים שכאלה.
                         `
                     }
                 </div>

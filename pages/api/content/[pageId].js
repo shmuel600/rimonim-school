@@ -26,6 +26,16 @@ const handler = async (req, res) => {
         }
     }
 
+    else if (req.method === 'DELETE') {
+        try {
+            const content = await Content.findByIdAndDelete(id);
+            return res.status(200).send(content);
+        }
+        catch (error) {
+            return res.status(500).send("content_delete", error.message);
+        }
+    }
+
     else {
         res.status(422).send('req_method_not_supported');
     }

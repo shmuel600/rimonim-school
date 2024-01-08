@@ -32,6 +32,9 @@ export default function CSR_Page({ pageType, pageName }) {
     React.useEffect(() => {
         const pageTypes = pages.map(page => page.type)
         const pageNames = pages.map(page => page.name)
+        if (pageType === 'class') {
+            router.replace(`/class/${pageName}/${'דף הבית'}`)
+        }
         if (
             !pageTypes?.includes(pageType) ||
             !pageNames?.includes(pageName)
@@ -39,9 +42,6 @@ export default function CSR_Page({ pageType, pageName }) {
             router.replace('/')
         }
         else setLoad(true)
-        if (pageType === 'class') {
-            router.replace(`/class/${pageName}/${'דף הבית'}`)
-        }
     }, [pages, pageType, pageName, router])
 
     return (

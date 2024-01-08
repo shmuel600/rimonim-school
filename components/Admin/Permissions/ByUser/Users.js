@@ -1,6 +1,8 @@
 import styles from '@/styles/Admin.module.css'
 import * as React from 'react'
 import Context from '@/contexts/context'
+import KeyRoundedIcon from '@mui/icons-material/KeyOutlined'
+import PersonRemoveRoundedIcon from '@mui/icons-material/PersonRemoveRounded'
 
 export default function Users({ users, updateUserPermissions }) {
     const { pages } = React.useContext(Context);
@@ -8,19 +10,10 @@ export default function Users({ users, updateUserPermissions }) {
 
     return (
         <div onMouseLeave={() => setMenu('')}>
-            <strong className={styles.tableHeader} style={{ color: 'darkgray' }} >
-                <div className={styles.category} >
-
-                    <div>
-                        הרשאות משתמשים
-                    </div>
-
-                </div>
-            </strong>
             {users.map(user =>
                 <div
                     key={user._id}
-                    className={styles.row}
+                    className={`${styles.row} ${styles.clickable}`}
                     onClick={() => {
                         setMenu(menu === user.name ? '' : user.name)
                     }}
@@ -48,11 +41,13 @@ export default function Users({ users, updateUserPermissions }) {
                                         {user.permissions !== 'admin' &&
                                             <div onClick={() => updateUserPermissions(user, 'admin')}>
                                                 הפוך למנהל
+                                                <KeyRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1, mr: -0.5 }} />
                                             </div>
                                         }
                                         {user.permissions &&
                                             <div onClick={() => updateUserPermissions(user, null)}>
                                                 הסר הרשאה
+                                                <PersonRemoveRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1, mr: -0.5 }} />
                                             </div>
                                         }
                                     </div>

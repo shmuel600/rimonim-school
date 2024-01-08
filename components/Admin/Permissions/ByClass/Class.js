@@ -2,9 +2,9 @@
 import styles from '@/styles/Admin.module.css'
 import * as React from 'react'
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
-import SetPermissions from '@/components/Admin/PagesPermissions/SetPermissions'
+import SetPermissions from '@/components/Admin/Permissions/ByClass/SetPermissions'
 
-export default function ClassesList({
+export default function Class({
     activeRow,
     setActiveRow,
     previouslyActiveRow,
@@ -25,7 +25,7 @@ export default function ClassesList({
     React.useEffect(() => {
         const fetchUserByPageId = async () => {
             try {
-                const fetchedUser = await fetch(`/api/page/${classPage?._id}`, {
+                const fetchedUser = await fetch(`/api/user/${classPage?._id}`, {
                     headers: { 'Content-Type': 'application/json' },
                 });
                 const json = await fetchedUser.json();
@@ -60,7 +60,7 @@ export default function ClassesList({
             {
                 users.length > 0 &&
                 <div
-                    className={styles.row}
+                    className={`${styles.row} ${styles.clickable}`}
                     onClick={() => {
                         setActiveRow(activeRow === classPage.name ? '' : classPage.name)
                         setPreviouslyActiveRow(activeRow === previouslyActiveRow ? '' : activeRow)
