@@ -60,7 +60,7 @@ export default function Header() {
 
                 <Image alt="" width={50} height={50}
                     className={styles.logo}
-                    src="/rimonim_logo_web_white.png"
+                    src="/rimonim_logo_web_colors.png"
                     priority={true}
                     style={{ margin: '0 0.5rem', cursor: 'pointer' }}
                     onClick={() => setPage('/')}

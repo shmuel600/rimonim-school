@@ -3,13 +3,41 @@ import Head from 'next/head'
 import { SessionProvider } from "next-auth/react"
 import Context from '@/contexts/context'
 import * as React from 'react'
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, styled } from '@mui/material/styles'
+import { Box } from '@mui/material'
 
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
   },
 });
+
+const Loader = styled(Box)({
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  width: '48px',
+  height: '48px',
+  border: '5px solid #90caf9',
+  borderBottom: '5px solid transparent',
+  borderRadius: '50%',
+  display: 'inline-block',
+  boxSizing: 'border-box',
+  animation: 'rotate 1s linear infinite',
+  "@keyframes rotate": {
+    '0%': { transform: 'translate(-50%, -50%) rotate(0deg)' },
+    '100%': { transform: 'translate(-50%, -50%) rotate(360deg)' }
+  }
+});
+
+const ErrorMsg = styled(Box)({
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  color: 'darkgray',
+  direction: 'rtl'
+})
 
 export default function App({
   Component,
@@ -18,7 +46,7 @@ export default function App({
 
   const [pages, setPages] = React.useState([])
   const [user, setUser] = React.useState()
-  const [onBadLoad, setOnBadLoad] = React.useState(<></>)
+  const [onBadLoad, setOnBadLoad] = React.useState(<Loader />)
 
   React.useEffect(() => {
     const fetchPages = async () => {
@@ -30,23 +58,22 @@ export default function App({
         setPages(json);
       }
       catch (error) {
-        console.log(error.message);
+        setOnBadLoad(
+          <ErrorMsg>
+            {`נתקלנו בבעיה בטעינת האתר.`}
+            <br />
+            {`לחצו `}
+            <strong onClick={() => window.location.reload()} style={{ cursor: 'pointer' }}>
+              {`לרענון הדף`}
+            </strong>
+            {` או נסו שוב מאוחר יותר.`}
+          </ErrorMsg>
+        )
       }
     }
 
     // fetch all pages
     fetchPages();
-
-    // if pages didnt get fetched
-    setTimeout(() => {
-      setOnBadLoad(
-        <>
-          {`There may have been a problem fetching data from the server.`}
-          <br />
-          {`Please wait or try again later.`}
-        </>
-      )
-    }, 1000)
   }, [])
 
   return (
@@ -65,15 +92,7 @@ export default function App({
               pages.length > 0 ?
                 <Component {...pageProps} />
                 :
-                <div style={{
-                  height: '100vh',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  color: 'darkgray'
-                }}>
-                  {onBadLoad}
-                </div>
+                onBadLoad
             }
           </SessionProvider>
         </Context.Provider >

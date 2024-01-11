@@ -1,34 +1,41 @@
 .header {
   font-size: large;
   font-weight: bold;
-  position: fixed;
-  top: 0;
-  width: 100%;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 75%;
   display: flex;
   align-items: center;
   z-index: 999;
-  background: gray;
-  min-height: 4rem;
+  background: transparent;
+  color: white;
 }
 
-.sideNav {
-  font-weight: bold;
-  position: fixed;
-  /* left: -100vh; */
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: darkgray;
-  transition: 0.6s ease-in-out;
-}
-
-.sideNav>* {
+.header>* {
   padding: 0.5rem 1rem;
   margin: 0.2rem 0.5rem;
   border-radius: 0.5rem;
 }
 
-.sideNav>*:hover {
-  background: lightgray;
+.header>*:hover {
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    font-size: medium;
+  }
+
+  .header>* {
+    padding: 0.1rem 0.2rem;
+    margin: 0.2rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .header {
+    font-size: small;
+  }
 }

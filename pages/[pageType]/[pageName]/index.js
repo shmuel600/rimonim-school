@@ -33,7 +33,7 @@ export default function CSR_Page({ pageType, pageName }) {
         const pageTypes = pages.map(page => page.type)
         const pageNames = pages.map(page => page.name)
         if (pageType === 'class') {
-            router.replace(`/class/${pageName}/${'דף הבית'}`)
+            router.replace(`/class/${pageName}/דף הבית`)
         }
         if (
             !pageTypes?.includes(pageType) ||

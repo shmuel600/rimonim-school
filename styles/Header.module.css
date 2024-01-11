@@ -126,7 +126,6 @@
 }
 
 /* ================ user details ================ */
-
 .userDetails {
   display: flex;
   flex-direction: row-reverse;
