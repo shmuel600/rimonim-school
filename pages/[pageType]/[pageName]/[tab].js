@@ -1,11 +1,10 @@
 import dynamic from 'next/dynamic'
 import styles from '@/styles/Page.module.css'
-// import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { useRouter } from 'next/router'
 import * as React from 'react'
 import ClassHeader from '@/components/Header/ClassHeader'
-import ClassHeaderSVG from '@/components/Header/ClassHeaderSVG'
+import { useVisible } from '@/hooks/useVisible'
 
 export async function getServerSideProps({ params }) {
     const { pageType, pageName, tab } = params;
@@ -52,9 +51,8 @@ export default function CSR_Page({ pageType, pageName, tab }) {
             {
                 load &&
                 <>
-                    {/* <ClassHeaderSVG /> */}
                     <ClassHeader pageName={pageName} />
-                    <div className={styles.page} style={{ background: '#fbf0fc', padding: 0 }}>
+                    <div className={styles.page} style={{ background: '#fff6fe', padding: 0 }}>
                         <DynamicContent pageName={pageName} pageType={pageType} tab={tab} />
                     </div>
                     <Footer />

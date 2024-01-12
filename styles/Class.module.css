@@ -2,9 +2,10 @@
   font-size: large;
   font-weight: bold;
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 75%;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  width: 80%;
   display: flex;
   align-items: center;
   z-index: 999;
@@ -23,7 +24,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 650px) {
   .header {
     font-size: medium;
   }
@@ -34,8 +35,15 @@
   }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 440px) {
   .header {
     font-size: small;
+    /* width: 85%; */
+    padding: 0.5rem;
+  }
+
+  .header>* {
+    padding: 0.1rem;
+    margin: 0.1rem;
   }
 }

@@ -20,7 +20,7 @@ export default function ClassHeader({ pageName }) {
     return (
         <>
             <ClassHeaderSVG pageName={pageName} />
-            <div className={styles.header} style={{ display: 'flex', flexDirection: 'row-reverse', flexWrap: 'wrap' }}>
+            <div className={styles.header} style={{ position: 'fixed', display: 'flex', flexDirection: 'row-reverse', flexWrap: 'wrap' }}>
                 {
                     classTabs.map(tab =>
                         <div key={classTabs.indexOf(tab)} onClick={() => {
