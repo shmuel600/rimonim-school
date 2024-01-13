@@ -187,3 +187,35 @@
     transform: translateX(0);
   }
 }
+
+.userDetails .details {
+  visibility: hidden;
+  width: 0;
+  height: 6.5rem;
+}
+
+.userDetails:hover .details {
+  visibility: visible;
+  width: fit-content;
+  animation: enter2 0.6s ease-in-out;
+}
+
+@keyframes enter2 {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+
+  45% {
+    width: 8rem;
+  }
+
+  50% {
+    width: fit-content;
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

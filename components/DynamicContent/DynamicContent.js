@@ -5,7 +5,7 @@ import * as React from 'react'
 import Context from '@/contexts/context'
 import StartEditButton from '@/components/Editor/StartEditButton'
 
-export default function DynamicContent({ pageName, tab = 'main', viewStartEditButton = true, isHomePage = false }) {
+export default function DynamicContent({ pageName, tab = 'main', isHomePage = false, handleSroll }) {
     const { pages, permissions } = React.useContext(Context);
     const marqueeRef = React.useRef()
     const pageId = [...pages].filter(page => page.name === pageName)[0]?._id
@@ -70,7 +70,7 @@ export default function DynamicContent({ pageName, tab = 'main', viewStartEditBu
     }
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <>
             {isEditingActive ?
                 <RichTextEditor
                     content={content}
@@ -108,14 +108,16 @@ export default function DynamicContent({ pageName, tab = 'main', viewStartEditBu
             }
 
             {
-                viewStartEditButton && (permissions === 'admin' || permissions === pageId) &&
+                // viewStartEditButton && 
+                (permissions === 'admin' || permissions === pageId) &&
                 <StartEditButton
                     isEditingActive={isEditingActive}
                     setIsEditingActive={setIsEditingActive}
                     handleSave={handleSave}
+                    handleSroll={handleSroll}
                 />
             }
 
-        </div>
+        </>
     )
 }

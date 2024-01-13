@@ -17,6 +17,10 @@ export default function Home() {
     const updates = React.useRef()
     const isUpdatesVisible = useVisible(updates)
 
+    const handleSroll = () => {
+        updates.current?.scrollIntoView({ behavior: 'smooth' })
+    }
+
     return (
         <main className={styles.main}>
 
@@ -33,7 +37,7 @@ export default function Home() {
             {!isUpdatesVisible &&
                 <div
                     style={{ display: 'flex', justifyContent: 'center', transitionDuration: '0.4s', cursor: 'pointer' }}
-                    onClick={() => updates.current.scrollIntoView({ behavior: "smooth" })}
+                    onClick={handleSroll}
                 >
                     <h2 style={{
                         position: 'fixed',
@@ -59,11 +63,11 @@ export default function Home() {
                     עדכונים שוטפים
                 </h1>
 
-                <div style={{ margin: '1rem' }}>
+                <div style={{ margin: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <DynamicContent
                         pageName={'home'}
-                        viewStartEditButton={isUpdatesVisible}
                         isHomePage={true}
+                        handleSroll={handleSroll}
                     />
                 </div>
 

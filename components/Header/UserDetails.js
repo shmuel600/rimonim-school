@@ -19,7 +19,7 @@ export default function UserDetails({ session, setPage }) {
             className={styles.userDetails}
         >
             <Image src={session?.user?.image} alt="" width={50} height={50} style={{ borderRadius: '50%', marginRight: '1rem' }} />
-            <div>
+            <div className={styles.details}>
                 <div>{session?.user?.name}</div>
                 <div>
                     {

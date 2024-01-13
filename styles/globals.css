@@ -18,6 +18,11 @@ marquee {
   overflow: visible !important;
 }
 
+a {
+  /* text-decoration: none; */
+  /* color: #90caf9; */
+}
+
 ::-webkit-scrollbar {
   width: 0;
 }

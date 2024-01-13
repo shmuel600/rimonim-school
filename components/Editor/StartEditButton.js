@@ -4,7 +4,7 @@ import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded'
 import DoneRoundedIcon from '@mui/icons-material/DoneRounded'
 import styles from '@/styles/Editor.module.css'
 
-export default function StartEditButton({ isEditingActive, setIsEditingActive, handleSave }) {
+export default function StartEditButton({ isEditingActive, setIsEditingActive, handleSave, handleSroll }) {
     return (
         <>
             {
@@ -22,7 +22,10 @@ export default function StartEditButton({ isEditingActive, setIsEditingActive, h
                     :
                     <Fab
                         className={styles.fabStartEdit}
-                        onClick={() => setIsEditingActive(true)}
+                        onClick={() => {
+                            setIsEditingActive(true)
+                            handleSroll && handleSroll()
+                        }}
                         sx={{ position: 'fixed', left: '1rem', bottom: '3rem' }}
                         size="medium"
                         color="primary"

@@ -11,13 +11,21 @@ import YardRoundedIcon from '@mui/icons-material/YardRounded'
 import PermMediaRoundedIcon from '@mui/icons-material/PermMediaRounded'
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded'
 import { useVisible } from '@/hooks/useVisible'
+import { useSession } from "next-auth/react"
+
+import UserDetails from './UserDetails'
 
 export default function ClassHeader({ pageName }) {
 
+    const { data: session } = useSession()
     const router = useRouter()
     const pageTop = React.useRef()
     const isScrolled = !useVisible(pageTop)
     const [activeTab, setActiveTab] = React.useState('דף הבית')
+
+    const setPage = (page) => {
+        router.push(page)
+    }
 
     const classTabs = [
         'דף הבית',
@@ -83,6 +91,10 @@ export default function ClassHeader({ pageName }) {
                 </div>
 
             </div >
+
+            {
+                session && <UserDetails session={session} setPage={setPage} />
+            }
         </>
     )
 }
