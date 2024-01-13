@@ -62,7 +62,6 @@ export default function Home() {
                 <div style={{ margin: '1rem' }}>
                     <DynamicContent
                         pageName={'home'}
-                        pageType={'home'}
                         viewStartEditButton={isUpdatesVisible}
                         isHomePage={true}
                     />

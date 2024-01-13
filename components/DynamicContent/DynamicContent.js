@@ -5,12 +5,13 @@ import * as React from 'react'
 import Context from '@/contexts/context'
 import StartEditButton from '@/components/Editor/StartEditButton'
 
-export default function DynamicContent({ pageName, pageType, tab = 'main', viewStartEditButton = true, isHomePage = false }) {
+export default function DynamicContent({ pageName, tab = 'main', viewStartEditButton = true, isHomePage = false }) {
     const { pages, permissions } = React.useContext(Context);
     const marqueeRef = React.useRef()
     const pageId = [...pages].filter(page => page.name === pageName)[0]?._id
     const [content, setContent] = React.useState('')
     const [isEditingActive, setIsEditingActive] = React.useState(false)
+    marqueeRef?.current?.start()
 
     React.useEffect(() => {
         const getPageContent = async () => {
@@ -69,7 +70,7 @@ export default function DynamicContent({ pageName, pageType, tab = 'main', viewS
     }
 
     return (
-        <>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {isEditingActive ?
                 <RichTextEditor
                     content={content}
@@ -84,23 +85,25 @@ export default function DynamicContent({ pageName, pageType, tab = 'main', viewS
                         >
                         </div>
                         :
-                        <marquee
-                            direction="right"
-                            scrollamount="10"
-                            ref={marqueeRef}
-                            style={{ maxWidth: '80%' }}
-                        >
-                            <span
-                                className={styles.updates}
-                                style={{ display: 'flex', maxWidth: 'fit-content', direction: 'rtl' }}
-                                onMouseEnter={() => marqueeRef.current.stop()}
-                                onMouseLeave={() => marqueeRef.current.start()}
-                                dangerouslySetInnerHTML={{
-                                    __html: msgStr(content)
-                                }}
+                        <div style={{ width: '80%' }}>
+                            <marquee
+                                direction="right"
+                                scrollamount="10"
+                                ref={marqueeRef}
+                                vspace="10"
                             >
-                            </span>
-                        </marquee>
+                                <span
+                                    className={styles.updates}
+                                    style={{ display: 'flex', width: 'fit-content', direction: 'rtl' }}
+                                    onMouseEnter={() => marqueeRef.current.stop()}
+                                    onMouseLeave={() => marqueeRef.current.start()}
+                                    dangerouslySetInnerHTML={{
+                                        __html: msgStr(content)
+                                    }}
+                                >
+                                </span>
+                            </marquee>
+                        </div>
                 )
             }
 
@@ -113,6 +116,6 @@ export default function DynamicContent({ pageName, pageType, tab = 'main', viewS
                 />
             }
 
-        </>
+        </div>
     )
 }

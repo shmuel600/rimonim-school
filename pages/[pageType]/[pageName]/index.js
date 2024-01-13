@@ -51,7 +51,7 @@ export default function CSR_Page({ pageType, pageName }) {
                 <>
                     <Header />
                     <div className={styles.page}>
-                        <DynamicContent pageName={pageName} pageType={pageType} />
+                        <DynamicContent pageName={pageName} />
                     </div>
                     <Footer />
                 </>

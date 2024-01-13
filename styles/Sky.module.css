@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap');
+
 .wrapper {
     min-width: 100%;
     background: #fbf0fc;
@@ -26,6 +28,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     fill: #f9952d;
+    font-family: 'Fredoka', system-ui;
 }
 
 .sun {

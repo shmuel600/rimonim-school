@@ -51,8 +51,8 @@ export default function CSR_Page({ pageType, pageName, tab }) {
                 load &&
                 <>
                     <ClassHeader pageName={pageName} />
-                    <div className={styles.page} style={{ background: '#fff6fe', padding: '10rem 0' }}>
-                        <DynamicContent pageName={pageName} pageType={pageType} tab={tab} />
+                    <div className={styles.page} style={{ background: '#fff6fe', padding: '2rem 0' }}>
+                        <DynamicContent pageName={pageName} tab={tab} />
                     </div>
                     <Footer />
                 </>
