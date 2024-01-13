@@ -5,23 +5,26 @@
   top: 0;
   right: 0;
   padding: 1rem;
-  width: 80%;
-  position: fixed;
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap;
   align-items: center;
   z-index: 999;
-  background: transparent;
   color: white;
 }
 
+.notScrolled {
+  position: absolute;
+  width: 80%;
+  background: transparent;
+}
+
 .scrolled {
+  position: fixed;
   width: 100%;
-  background: rgb(255, 255, 255);
   animation: enter 0.4s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.05) 1.95px 1.95px 2.6px;
-  z-index: 999;
+  background: rgb(255, 255, 255);
 }
 
 @keyframes enter {
@@ -34,6 +37,10 @@
   }
 }
 
+.scrolled {
+  padding: 0.5rem;
+}
+
 .scrolled .inactive .tabs {
   display: none;
 }
@@ -44,18 +51,31 @@
   opacity: 0.2;
 }
 
-.scrolled .active,
-.scrolled>*:hover {
-  color: #85E0FF !important;
-}
-
 .scrolled .active {
+  color: #85E0FF !important;
   opacity: 1;
 }
 
-.scrolled>*:hover {
+.scrolled .inactive:hover {
   opacity: 0.6 !important;
   color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.scrolled .inactive:hover .tabs {
+  display: block;
+  animation: from-right 0.5s ease-in-out;
+}
+
+@keyframes from-right {
+  from {
+    transform: translateX(0.5rem);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .header>* {
@@ -64,11 +84,18 @@
   border-radius: 0.5rem;
 }
 
+.header>*:hover {
+  color: #c9e7f3;
+}
+
+.active {
+  color: #fde6a6;
+}
+
 .header>*:hover,
 .active {
   background: rgba(255, 255, 255, 0.1);
   cursor: pointer;
-  color: #fde6a6;
   opacity: 1;
 }
 

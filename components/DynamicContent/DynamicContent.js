@@ -12,7 +12,6 @@ export default function DynamicContent({ pageName, pageType, tab = 'main', viewS
     const [content, setContent] = React.useState('')
     const [isEditingActive, setIsEditingActive] = React.useState(false)
 
-    console.log(content);
     React.useEffect(() => {
         const getPageContent = async () => {
             try {

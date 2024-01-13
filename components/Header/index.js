@@ -11,35 +11,12 @@ import UserDetails from './UserDetails'
 
 export default function Header() {
     const { data: session } = useSession()
-    const { pages, user, setUser, permissions } = React.useContext(Context);
+    const { pages, permissions } = React.useContext(Context);
     const [menu, setMenu] = React.useState('')
     const router = useRouter()
     const { asPath: path } = useRouter()
     const pageTop = React.useRef()
     const hideHeaderBackground = useVisible(pageTop) && path === '/'
-
-    React.useEffect(() => {
-        const signUserIn = async () => {
-            const userDetails = {
-                name: session?.user?.name,
-                email: session?.user?.email,
-                image: session?.user?.image,
-            }
-            try {
-                const fetchedUser = await fetch("/api/user", {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(userDetails)
-                });
-                const json = await fetchedUser.json();
-                setUser(json);
-            }
-            catch (error) {
-                console.log(error.message, "could_not_create_user");
-            }
-        }
-        session?.user && !user && signUserIn();
-    }, [session, user, setUser])
 
     const setPage = (page) => {
         router.push(page)

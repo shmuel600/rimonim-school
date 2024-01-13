@@ -15,8 +15,8 @@ import { useVisible } from '@/hooks/useVisible'
 export default function ClassHeader({ pageName }) {
 
     const router = useRouter()
-    const sky = React.useRef()
-    const isScrolled = !useVisible(sky)
+    const pageTop = React.useRef()
+    const isScrolled = !useVisible(pageTop)
     const [activeTab, setActiveTab] = React.useState('דף הבית')
 
     const classTabs = [
@@ -39,10 +39,10 @@ export default function ClassHeader({ pageName }) {
 
     return (
         <>
-            <div ref={sky}>
+            <div ref={pageTop} style={{ position: 'absolute', height: '4rem' }}></div>
+            <div>
                 <ClassHeaderSVG pageName={pageName} />
             </div>
-
             <div className={`${styles.header} ${isScrolled ? styles.scrolled : styles.notScrolled}`}>
 
                 {
@@ -62,13 +62,13 @@ export default function ClassHeader({ pageName }) {
                             <div style={{ marginLeft: '0.5rem' }}>
                                 {tabsIcons[classTabs.indexOf(tab)]}
                             </div>
-                        </div>
+                        </div >
                     )
                 }
 
                 <div
                     style={{ display: 'flex' }}
-                    className={`${activeTab === 'school-site' ? styles.active : styles.gray}`}
+                    className={`${activeTab === 'school-site' ? styles.active : styles.inactive}`}
                     onClick={() => {
                         router.push(`/`)
                         setActiveTab('school-site')
@@ -82,7 +82,7 @@ export default function ClassHeader({ pageName }) {
                     </div>
                 </div>
 
-            </div>
+            </div >
         </>
     )
 }

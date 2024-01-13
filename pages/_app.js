@@ -5,6 +5,7 @@ import Context from '@/contexts/context'
 import * as React from 'react'
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles'
 import { Box } from '@mui/material'
+import Permissions from '@/components/Permissions/index'
 
 const darkTheme = createTheme({
   palette: {
@@ -48,6 +49,8 @@ export default function App({
   const [user, setUser] = React.useState()
   const [onBadLoad, setOnBadLoad] = React.useState(<Loader />)
 
+
+
   React.useEffect(() => {
     const fetchPages = async () => {
       try {
@@ -88,6 +91,7 @@ export default function App({
       <ThemeProvider theme={darkTheme}>
         <Context.Provider value={{ pages, user, setUser, permissions: user?.permissions || null }}>
           <SessionProvider session={session}>
+            <Permissions />
             {
               pages.length > 0 ?
                 <Component {...pageProps} />
