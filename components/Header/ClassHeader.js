@@ -3,10 +3,21 @@ import styles from '@/styles/Class.module.css'
 import * as React from 'react'
 import { useRouter } from 'next/router'
 import ClassHeaderSVG from '@/components/Header/ClassHeaderSVG'
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded'
+import EventRoundedIcon from '@mui/icons-material/EventRounded'
+import CalendarViewMonthRoundedIcon from '@mui/icons-material/CalendarViewMonthRounded'
+import CasinoRoundedIcon from '@mui/icons-material/CasinoRounded'
+import YardRoundedIcon from '@mui/icons-material/YardRounded'
+import PermMediaRoundedIcon from '@mui/icons-material/PermMediaRounded'
+import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded'
+import { useVisible } from '@/hooks/useVisible'
 
 export default function ClassHeader({ pageName }) {
 
     const router = useRouter()
+    const sky = React.useRef()
+    const isScrolled = !useVisible(sky)
+    const [activeTab, setActiveTab] = React.useState('דף הבית')
 
     const classTabs = [
         'דף הבית',
@@ -17,22 +28,60 @@ export default function ClassHeader({ pageName }) {
         'תמונות וסרטונים'
     ]
 
+    const tabsIcons = [
+        <HomeRoundedIcon key={0} className={styles.tabsIcons} />,
+        <EventRoundedIcon key={1} className={styles.tabsIcons} />,
+        <CalendarViewMonthRoundedIcon key={2} className={styles.tabsIcons} />,
+        <CasinoRoundedIcon key={3} className={styles.tabsIcons} />,
+        <YardRoundedIcon key={4} className={styles.tabsIcons} />,
+        <PermMediaRoundedIcon key={5} className={styles.tabsIcons} />
+    ]
+
     return (
         <>
-            <ClassHeaderSVG pageName={pageName} />
-            <div className={styles.header} style={{ position: 'fixed', display: 'flex', flexDirection: 'row-reverse', flexWrap: 'wrap' }}>
+            <div ref={sky}>
+                <ClassHeaderSVG pageName={pageName} />
+            </div>
+
+            <div className={`${styles.header} ${isScrolled ? styles.scrolled : styles.notScrolled}`}>
+
                 {
                     classTabs.map(tab =>
-                        <div key={classTabs.indexOf(tab)} onClick={() => {
-                            router.push(`/class/${pageName}/${tab}`)
-                        }}>
-                            {tab}
+                        <div
+                            key={classTabs.indexOf(tab)}
+                            style={{ display: 'flex' }}
+                            className={`${activeTab === tab ? styles.active : styles.inactive}`}
+                            onClick={() => {
+                                router.push(`/class/${pageName}/${tab}`)
+                                setActiveTab(tab)
+                            }}
+                        >
+                            <div className={styles.tabs}>
+                                {tab}
+                            </div>
+                            <div style={{ marginLeft: '0.5rem' }}>
+                                {tabsIcons[classTabs.indexOf(tab)]}
+                            </div>
                         </div>
                     )
                 }
-                <div onClick={() => router.push(`/`)}>
-                    אתר בית הספר
+
+                <div
+                    style={{ display: 'flex' }}
+                    className={`${activeTab === 'school-site' ? styles.active : styles.gray}`}
+                    onClick={() => {
+                        router.push(`/`)
+                        setActiveTab('school-site')
+                    }}
+                >
+                    <div className={styles.tabs}>
+                        אתר בית הספר
+                    </div>
+                    <div style={{ marginLeft: '0.5rem' }}>
+                        <SchoolRoundedIcon className={styles.tabsIcons} />
+                    </div>
                 </div>
+
             </div>
         </>
     )

@@ -6,11 +6,56 @@
   right: 0;
   padding: 1rem;
   width: 80%;
+  position: fixed;
   display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
   align-items: center;
   z-index: 999;
   background: transparent;
   color: white;
+}
+
+.scrolled {
+  width: 100%;
+  background: rgb(255, 255, 255);
+  animation: enter 0.4s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.05) 1.95px 1.95px 2.6px;
+  z-index: 999;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.scrolled .inactive .tabs {
+  display: none;
+}
+
+.scrolled .inactive,
+.scrolled .gray {
+  color: #2d2d2d;
+  opacity: 0.2;
+}
+
+.scrolled .active,
+.scrolled>*:hover {
+  color: #85E0FF !important;
+}
+
+.scrolled .active {
+  opacity: 1;
+}
+
+.scrolled>*:hover {
+  opacity: 0.6 !important;
+  color: rgba(0, 0, 0, 0.6) !important;
 }
 
 .header>* {
@@ -19,31 +64,85 @@
   border-radius: 0.5rem;
 }
 
-.header>*:hover {
+.header>*:hover,
+.active {
   background: rgba(255, 255, 255, 0.1);
   cursor: pointer;
+  color: #fde6a6;
+  opacity: 1;
 }
 
-@media screen and (max-width: 650px) {
-  .header {
-    font-size: medium;
-  }
-
-  .header>* {
-    padding: 0.1rem 0.2rem;
-    margin: 0.2rem;
-  }
+.gray {
+  opacity: 0.5;
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 810px) {
   .header {
-    font-size: small;
-    /* width: 85%; */
     padding: 0.5rem;
   }
 
   .header>* {
+    padding: 0.2rem 0.3rem;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .header {
+    font-size: medium;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .header>* {
+    padding: 0.2rem;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .header>* {
     padding: 0.1rem;
+    margin: 0.1rem 0.3rem;
+  }
+
+  .active {
     margin: 0.1rem;
+  }
+
+  .inactive .tabs {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .active {
+    margin: 0.1rem;
+  }
+
+  .inactive .tabs {
+    display: none !important;
+  }
+
+  .scrolled>* {
+    font-size: small;
+  }
+
+  .scrolled .tabsIcons {
+    font-size: small;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .header>* {
+    font-size: small;
+  }
+
+  .tabsIcons {
+    font-size: medium;
+  }
+
+  .scrolled>* {
+    padding: 0.1rem;
+    margin: 0;
+    margin-left: 0.1rem;
   }
 }

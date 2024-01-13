@@ -12,6 +12,7 @@ export default function DynamicContent({ pageName, pageType, tab = 'main', viewS
     const [content, setContent] = React.useState('')
     const [isEditingActive, setIsEditingActive] = React.useState(false)
 
+    console.log(content);
     React.useEffect(() => {
         const getPageContent = async () => {
             try {
@@ -51,6 +52,8 @@ export default function DynamicContent({ pageName, pageType, tab = 'main', viewS
             .replaceAll(`class="ql-size-small"`, `style="font-size: small;"`)
             .replaceAll(`class="ql-size-large"`, `style="font-size: x-large;"`)
             .replaceAll(`class="ql-size-huge"`, `style="font-size: xx-large;"`)
+            .replaceAll(`&lt;img src="`, `<img src="`)
+            .replaceAll(`"/&gt;`, `"/>`)
         return fixLinksInString(newStr)
     }
 

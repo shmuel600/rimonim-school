@@ -4,7 +4,6 @@ import Footer from '@/components/Footer'
 import { useRouter } from 'next/router'
 import * as React from 'react'
 import ClassHeader from '@/components/Header/ClassHeader'
-import { useVisible } from '@/hooks/useVisible'
 
 export async function getServerSideProps({ params }) {
     const { pageType, pageName, tab } = params;
@@ -52,7 +51,7 @@ export default function CSR_Page({ pageType, pageName, tab }) {
                 load &&
                 <>
                     <ClassHeader pageName={pageName} />
-                    <div className={styles.page} style={{ background: '#fff6fe', padding: 0 }}>
+                    <div className={styles.page} style={{ background: '#fff6fe', padding: '10rem 0' }}>
                         <DynamicContent pageName={pageName} pageType={pageType} tab={tab} />
                     </div>
                     <Footer />

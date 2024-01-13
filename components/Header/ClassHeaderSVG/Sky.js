@@ -1,5 +1,5 @@
 'use client'
-import styles from '@/styles/ClassHeader.module.css'
+import styles from '@/styles/Sky.module.css'
 
 export default function Clouds({ pageName }) {
     return (
@@ -28,7 +28,7 @@ export default function Clouds({ pageName }) {
             <g className={styles.clouds}>
                 <use xlinkHref="#cloud" id="cloud1" className={styles.cloud1} fill="url(#gradient_cloud1)" x="-40" y="-300" />
                 <use xlinkHref="#cloud" id="cloud2" className={styles.cloud2} fill="url(#gradient_cloud2)" x="40" y="-260" />
-                <use xlinkHref="#cloud" id="cloud3" className={styles.cloud3} fill="url(#gradient_cloud3)" x="0" y="-200" />
+                <use xlinkHref="#cloud" id="cloud3" className={styles.cloud3} fill="url(#gradient_cloud3)" x="0" y="-195" />
             </g>
 
             <animateTransform

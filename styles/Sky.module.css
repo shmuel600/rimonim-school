@@ -1,23 +1,13 @@
-/* remember to swap with class.css */
-/* 
-* {
-    margin: 0;
-    padding: 0;
-} */
-
 .wrapper {
     min-width: 100%;
     background: #fbf0fc;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 /* === SVG === */
 .svg {
     background: transparent;
     min-width: 100%;
-    /* min-height: 4rem;
-    max-height: 10rem; */
-    /* background: radial-gradient(ellipse at 30% 30%, rgba(144, 221, 236, 1) 0%, rgba(89, 177, 213, 1) 50%); */
 }
 
 .svg .s5,
@@ -40,7 +30,6 @@
 
 .sun {
     transform: translate(-1rem, 8rem) scale(0.6);
-    /* position: absolute; */
 }
 
 .clouds {
@@ -49,6 +38,5 @@
 
 .sky {
     background: radial-gradient(ellipse at 30% 30%, rgba(144, 221, 236, 1) 0%, rgba(89, 177, 213, 1) 50%);
-    /* transform: translateY(-50%); */
-    margin-bottom: -1rem;
+    margin-bottom: -1rem !important;
 }
