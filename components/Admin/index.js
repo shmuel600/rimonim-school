@@ -10,8 +10,8 @@ export default function Admin({ pageTop, activeTab }) {
 
     const { pages } = React.useContext(Context);
     const [users, setUsers] = React.useState([]);
-    const classes = pages.filter(page => page.type === 'class')
-    const studyMaterials = pages.filter(page => page.type === 'study-material')
+    // const classes = pages.filter(page => page.type === 'class')
+    // const studyMaterials = pages.filter(page => page.type === 'study-material')
 
     React.useEffect(() => {
         const fetchAllUsers = async () => {
@@ -60,17 +60,17 @@ export default function Admin({ pageTop, activeTab }) {
         <>
             <div hidden={activeTab !== 0} style={{ minWidth: 'min(600px, 80%)' }}>
                 <Permissions
-                    classes={classes}
+                    classes={pages.filter(page => page.type === 'class')}
                     users={users}
                     pageTop={pageTop}
                     updateUserPermissions={updateUserPermissions}
                 />
             </div>
             <div hidden={activeTab !== 1} style={{ minWidth: 'min(600px, 80%)' }}>
-                <Pages
-                    classes={classes}
-                    studyMaterials={studyMaterials}
-                />
+                {/* <Pages
+                    classes={pages.filter(page => page.type === 'class')}
+                    studyMaterials={pages.filter(page => page.type === 'study-material')}
+                /> */}
             </div>
             <div hidden={activeTab !== 2}>
                 <HomePageGallery />

@@ -22,6 +22,7 @@
   border-radius: 5px;
 }
 
+.isHomePage>.headerButton:hover,
 .openMenu>*:hover,
 .headerButton:hover {
   background-color: rgba(60, 60, 60, 0.15);
@@ -53,6 +54,13 @@
 
 .showBackground .headerButton {
   color: black;
+  border-bottom: 4px solid transparent;
+}
+
+.showBackground .headerButton:hover {
+  background-color: rgba(60, 60, 60, 0.15);
+  border-radius: 5px;
+  border-bottom: 4px solid transparent;
 }
 
 .headerButton {

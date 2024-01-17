@@ -7,13 +7,8 @@ export default function Pages({ classes, users, pageTop, updateUserPermissions }
 
     const [tab, setTab] = React.useState('כיתות')
 
-
-
     return (
         <>
-            {/* option to add class */}
-            {/* add permission: "all classes", to users page */}
-            {/* option to add study material? */}
             <strong className={styles.tableHeader} style={{ color: 'darkgray' }}>
                 <div className={styles.category} >
                     <div

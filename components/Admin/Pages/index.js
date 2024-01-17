@@ -7,6 +7,7 @@ import Modal from '@/components/Modal/Modal'
 import SaveAltRoundedIcon from '@mui/icons-material/SaveAltRounded'
 
 export default function EditPages({ classes, studyMaterials }) {
+
     const [modalOpen, setModalOpen] = React.useState(false);
     const [editName, setEditName] = React.useState('');
     const [idToDelete, setIdToDelete] = React.useState('');
@@ -55,9 +56,10 @@ export default function EditPages({ classes, studyMaterials }) {
             setModalOpen(true)
         }
         else {
-            setIdToDelete('')
+            // remember to update user permissions to null
             updatePage('DELETE', 'page', idToDelete)
             updatePage('DELETE', 'content', idToDelete)
+            setIdToDelete('')
         }
     }
 
@@ -113,6 +115,7 @@ export default function EditPages({ classes, studyMaterials }) {
                     </div>
                 </div>
             )}
+
             <div className={styles.row} style={{ color: 'darkgray' }} >
                 <div className={styles.tableRow}>
                     <div className={styles.category} >
@@ -167,7 +170,7 @@ export default function EditPages({ classes, studyMaterials }) {
                             </div>
                             <div
                                 className={styles.detailsButton}
-                                onClick={() => handleRename(studyMaterial._id)}
+                                onClick={() => handleDelete(studyMaterial._id)}
                             >
                                 <DeleteRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1, mr: -0.5 }} />
                                 מחק
@@ -177,6 +180,7 @@ export default function EditPages({ classes, studyMaterials }) {
                     </div>
                 </div>
             )}
+
             <div className={styles.row} style={{ color: 'darkgray' }} >
                 <div className={styles.tableRow}>
                     <div className={styles.category} >
@@ -223,7 +227,8 @@ export default function EditPages({ classes, studyMaterials }) {
                             </div>
                         </div>
                     </div>
-                } />
+                }
+            />
 
         </>
     )
