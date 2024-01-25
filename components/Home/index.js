@@ -71,7 +71,7 @@ export default function Home() {
                     />
                 </div>
 
-                <div
+                {/* <div
                     style={{ padding: '2rem 12%', scrollMargin: '4rem', color: 'gray', direction: 'rtl', zIndex: 1, marginTop: '1rem' }}
                 >
                     {
@@ -95,7 +95,7 @@ export default function Home() {
                         והוא מתחייב ליידע את האחראי להפרה זו ולהתריע בפניו על העלאת חומרים אלה, 
                         כדי למנוע הישנות מקרים שכאלה.`
                     }
-                </div>
+                </div> */}
 
             </div>
 
