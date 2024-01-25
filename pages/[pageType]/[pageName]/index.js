@@ -5,7 +5,6 @@ import Footer from '@/components/Footer'
 import { useRouter } from 'next/router'
 import * as React from 'react'
 import Context from '@/contexts/context'
-import ClassHeader from '@/components/Header/ClassHeader'
 
 export async function getServerSideProps({ params }) {
     const { pageType, pageName } = params;

@@ -1,5 +1,7 @@
 import connectDB from "@/middleware/mongoDB"
 import Page from "@/models/page"
+import Content from "@/models/content"
+import User from "@/models/user"
 
 const handler = async (req, res) => {
 
@@ -27,6 +29,8 @@ const handler = async (req, res) => {
 
     else if (req.method === 'DELETE') {
         try {
+            await User.find({ permissions: id }).updateOne({ permissions: null });
+            await Content.find({ pageId: id }).deleteMany();
             const page = await Page.findByIdAndDelete(id);
             return res.status(200).send(page);
         }

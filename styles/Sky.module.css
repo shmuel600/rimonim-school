@@ -24,11 +24,17 @@
 }
 
 .className {
-    transform: translate(0rem, -2.5rem) scale(1.5);
-    font-size: 1.5rem;
+    /* transform: translate(0rem, -2.5rem) scale(1.5); */
+    /* text-align: center; */
+    text-anchor: middle;
+    font-size: 4rem;
     font-weight: bold;
     fill: #f9952d;
+    /* stroke: #fbcb4a; */
+    stroke-width: 1;
     font-family: 'Fredoka', system-ui;
+    max-width: 180px;
+    overflow: clip;
 }
 
 .sun {

@@ -90,6 +90,7 @@ export default function Header() {
                             {
                                 pages && pages
                                     .filter(page => page.type === 'class')
+                                    .sort((a, b) => a.name.replace(/\D/g, '') - b.name.replace(/\D/g, ''))
                                     .map(page =>
                                         <button
                                             key={page._id}
@@ -118,6 +119,15 @@ export default function Header() {
                                 {
                                     pages && pages
                                         .filter(page => page.type === 'study-material')
+                                        .sort((a, b) => {
+                                            if (a.name < b.name) {
+                                                return -1;
+                                            }
+                                            if (a.name > b.name) {
+                                                return 1;
+                                            }
+                                            else return 0;
+                                        })
                                         .map(page =>
                                             <button
                                                 key={page._id}

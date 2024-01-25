@@ -8,7 +8,7 @@ const handler = async (req, res) => {
 
     if (req.method === 'PATCH') {
         try {
-            const updatedContent = await Content.findOneAndUpdate({ pageId, tab }, { content })
+            const updatedContent = await Content.findOneAndUpdate({ pageId, tab }, { content, lastEdit: Date.now() })
             return res.status(200).send(updatedContent);
         }
         catch (error) {

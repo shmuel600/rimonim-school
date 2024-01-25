@@ -69,10 +69,19 @@ export default function Clouds({ pageName }) {
                 <path id="s3" fill="#ffdc82" d="M426.8-27c-19.4-43.1-64.1-63.7-109.6-58-47.7,5.8-88,34.1-100.9,82.8-6.3,23.8,5.1,47.8,22.6,63.8,8.7,8,19.2,13,28.8,19.6s16.8,16,24.2,26.1c25.7,35.3,75.5,33.7,108,8.6C441,84.2,447.2,18.3,426.8-27Z" />
                 <path id="s2" className={styles.s2} fill="#ffe6a6" d="M416.5-8.3c-4.4-40-37.6-62.6-74.9-66.7-15.7-1.8-34.8-2.1-48.5,6.6C274.4-56.5,276.2-37.8,278.2-19s-5,39.8,11.6,53.4c12.8,10.5,37,19.3,52.7,23.4C385.6,69.1,421.1,34.7,416.5-8.3Z" />
                 <path id="s1" fill="#ffeec2" d="M375.3,23.5c-5.1,16.7-28,24.5-51,17.4s-37.7-26.3-32.5-43,27.9-24.6,51-17.5S380.4,6.7,375.3,23.5Z" />
+                <text
+                    x={'332'}
+                    y={'32'}
+                    dominant-baseline="middle"
+                    alignment-baseline="middle"
+                    text-anchor="middle"
+                    textLength='260'
+                    // lengthAdjust='spacingAndGlyphs'
+                    className={styles.className}
+                >
+                    {pageName}
+                </text>
             </g>
-            <text x="80" y="130" className={styles.className}>
-                {pageName}
-            </text>
 
             {/* <!-- SUN --> */}
             <animateTransform

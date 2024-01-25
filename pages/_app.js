@@ -6,6 +6,7 @@ import * as React from 'react'
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles'
 import { Box } from '@mui/material'
 import Permissions from '@/components/Permissions/index'
+import Loader from '@/components/Loader/index'
 
 const darkTheme = createTheme({
   palette: {
@@ -13,23 +14,23 @@ const darkTheme = createTheme({
   },
 });
 
-const Loader = styled(Box)({
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
-  width: '48px',
-  height: '48px',
-  border: '5px solid #90caf9',
-  borderBottom: '5px solid transparent',
-  borderRadius: '50%',
-  display: 'inline-block',
-  boxSizing: 'border-box',
-  animation: 'rotate 1s linear infinite',
-  "@keyframes rotate": {
-    '0%': { transform: 'translate(-50%, -50%) rotate(0deg)' },
-    '100%': { transform: 'translate(-50%, -50%) rotate(360deg)' }
-  }
-});
+// const Loader = styled(Box)({
+//   position: 'fixed',
+//   top: '50%',
+//   left: '50%',
+//   width: '48px',
+//   height: '48px',
+//   border: '5px solid #90caf9',
+//   borderBottom: '5px solid transparent',
+//   borderRadius: '50%',
+//   display: 'inline-block',
+//   boxSizing: 'border-box',
+//   animation: 'rotate 1s linear infinite',
+//   "@keyframes rotate": {
+//     '0%': { transform: 'translate(-50%, -50%) rotate(0deg)' },
+//     '100%': { transform: 'translate(-50%, -50%) rotate(360deg)' }
+//   }
+// });
 
 const ErrorMsg = styled(Box)({
   position: 'fixed',
@@ -89,7 +90,7 @@ export default function App({
       </Head>
 
       <ThemeProvider theme={darkTheme}>
-        <Context.Provider value={{ pages, user, setUser, permissions: user?.permissions || null }}>
+        <Context.Provider value={{ pages, setPages, user, setUser, permissions: user?.permissions || null }}>
           <SessionProvider session={session}>
             <Permissions />
             {

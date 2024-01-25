@@ -9,15 +9,16 @@ import Admin from '@/components/Admin/index'
 export default function AdminPage() {
 
     const router = useRouter()
-    const { permissions } = React.useContext(Context);
+    const { user, permissions } = React.useContext(Context);
 
     const pageTop = React.useRef()
     const [activeTab, setActiveTab] = React.useState(0);
 
     React.useEffect(() => {
-        if (permissions !== 'admin')
+        if (user && permissions !== 'admin') {
             router.replace('/')
-    }, [permissions, router])
+        }
+    }, [user, permissions, router])
 
     return (
         <>

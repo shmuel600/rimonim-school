@@ -1,9 +1,11 @@
 import Modal from '@mui/material/Modal'
+import styles from '@/styles/Admin.module.css'
 
 export default function ModalComponent({ open, handleClose, content }) {
     return (
         <Modal
             open={open}
+            className={styles.modal}
             onClose={handleClose}
             hideBackdrop
             disableAutoFocus
@@ -28,7 +30,9 @@ export default function ModalComponent({ open, handleClose, content }) {
                 flexDirection: 'column'
             }}
         >
-            {content}
+            <div className={styles.modalContent}>
+                {content}
+            </div>
         </Modal>
     )
 }

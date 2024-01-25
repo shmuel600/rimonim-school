@@ -6,6 +6,7 @@ const user = new Schema({
     email: { type: String, required: true },
     image: { type: String },
     permissions: { type: String },
+    since: { type: Date, default: Date.now },
 });
 
 mongoose.models = {};

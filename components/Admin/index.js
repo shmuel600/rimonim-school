@@ -5,13 +5,12 @@ import Context from '@/contexts/context'
 import Permissions from '@/components/Admin/Permissions/index'
 import Pages from '@/components/Admin/Pages/index'
 import HomePageGallery from '@/components/Admin/HomePageGallery'
+import Loader from '../Loader';
 
 export default function Admin({ pageTop, activeTab }) {
 
-    const { pages } = React.useContext(Context);
+    const { pages, setPages } = React.useContext(Context);
     const [users, setUsers] = React.useState([]);
-    // const classes = pages.filter(page => page.type === 'class')
-    // const studyMaterials = pages.filter(page => page.type === 'study-material')
 
     React.useEffect(() => {
         const fetchAllUsers = async () => {
@@ -56,9 +55,23 @@ export default function Admin({ pageTop, activeTab }) {
         }
     }
 
+    const refreshPages = async () => {
+        try {
+            const fetchedPages = await fetch("/api/page", {
+                headers: { 'Content-Type': 'application/json' },
+            });
+            const json = await fetchedPages.json();
+            setPages(json);
+        }
+        catch (error) {
+            console.log(error.message);
+        }
+    }
+
     return (
         <>
-            <div hidden={activeTab !== 0} style={{ minWidth: 'min(600px, 80%)' }}>
+
+            <div hidden={activeTab !== 0 || !(users.length > 0)} style={{ minWidth: 'min(600px, 80%)' }}>
                 <Permissions
                     classes={pages.filter(page => page.type === 'class')}
                     users={users}
@@ -66,15 +79,24 @@ export default function Admin({ pageTop, activeTab }) {
                     updateUserPermissions={updateUserPermissions}
                 />
             </div>
-            <div hidden={activeTab !== 1} style={{ minWidth: 'min(600px, 80%)' }}>
-                {/* <Pages
+
+            <div hidden={activeTab !== 1 || !(users.length > 0)} style={{ minWidth: 'min(600px, 80%)' }}>
+                <Pages
+                    pages={pages}
                     classes={pages.filter(page => page.type === 'class')}
                     studyMaterials={pages.filter(page => page.type === 'study-material')}
-                /> */}
+                    refreshPages={refreshPages}
+                />
             </div>
-            <div hidden={activeTab !== 2}>
+
+            <div hidden={activeTab !== 2 || !(users.length > 0)}>
                 <HomePageGallery />
             </div>
+
+            <div hidden={users.length > 0}>
+                <Loader />
+            </div>
+
         </>
     )
 }
