@@ -37,6 +37,11 @@ const handler = async (req, res) => {
 
     else if (req.method === 'GET') {
         try {
+            // delete all users without any permissions for more than 2 weeks
+            const today = new Date();
+            const twoWeeksAgo = today.setDate(today.getDate() - 14);
+            await User.find({ permissions: null, lastPermissions: { $lt: twoWeeksAgo } }).deleteMany()
+            // get all users
             const users = await User.find();
             return res.status(200).send(users);
         }

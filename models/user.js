@@ -7,6 +7,7 @@ const user = new Schema({
     image: { type: String },
     permissions: { type: String },
     since: { type: Date, default: Date.now },
+    lastPermissions: { type: Date, default: Date.now },
 });
 
 mongoose.models = {};
