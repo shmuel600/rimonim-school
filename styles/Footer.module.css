@@ -17,12 +17,16 @@
     justify-content: center;
     align-items: center;
     padding: 0.1rem;
-    color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.2);
     font-size: large;
 }
 
 .credit>* {
     margin-left: 1rem;
+}
+
+.linkedIn:hover {
+    color: rgba(255, 255, 255, 0.4);
 }
 
 @media screen and (max-width: 500px) {
@@ -50,6 +54,14 @@
     justify-content: space-between;
     direction: rtl;
     width: min(600px, 80%);
+}
+
+.footerText {
+    width: 50%;
+    margin: 1.5rem;
+    color: rgba(255, 255, 255, 0.2);
+    text-align: right;
+    font-size: smaller;
 }
 
 .links {
