@@ -3,10 +3,10 @@ import styles from '@/styles/Footer.module.css'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import Link from "next/link"
 import PhoneEnabledRoundedIcon from '@mui/icons-material/PhoneEnabledRounded'
+import Groups2RoundedIcon from '@mui/icons-material/Groups2Rounded'
 import SegmentRoundedIcon from '@mui/icons-material/SegmentRounded'
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded'
 import InsertEmoticonRoundedIcon from '@mui/icons-material/InsertEmoticonRounded'
-import MoodRoundedIcon from '@mui/icons-material/MoodRounded'
 
 export default function Footer() {
 
@@ -21,6 +21,10 @@ export default function Footer() {
                             <PhoneEnabledRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} />
                             {`צור קשר`}
                         </Link>
+                        <div>
+                            <Groups2RoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} />
+                            {`צוות בית הספר`}
+                        </div>
                         <div>
                             <SegmentRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} />
                             {`תקנון בית הספר`}
