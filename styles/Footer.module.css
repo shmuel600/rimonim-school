@@ -66,7 +66,7 @@
 
 .links>* {
     padding: 0.3rem 0.5rem;
-    /* margin: 0.2rem; */
+    margin: 0.2rem;
     border-radius: 0.3rem;
     width: 100%;
     text-align: right;
@@ -123,8 +123,8 @@
 }
 
 .contact>* {
-    padding: 0.2rem 0.5rem;
-    margin: 0.1rem;
+    padding: 0.3rem 0.5rem;
+    margin: 0.2rem;
     border-radius: 0.3rem;
     width: 100%;
     text-align: right;
