@@ -2,9 +2,7 @@ import styles from '@/styles/Admin.module.css'
 import { useRouter } from 'next/router'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
-import LockRoundedIcon from '@mui/icons-material/LockRounded'
-import GroupAddRoundedIcon from '@mui/icons-material/GroupAddRounded'
-import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded'
 import SpaceDashboardRoundedIcon from '@mui/icons-material/SpaceDashboardRounded'
 import CollectionsRoundedIcon from '@mui/icons-material/CollectionsRounded'
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded'
@@ -20,7 +18,6 @@ export default function AdminHeader({ activeTab, setActiveTab }) {
         <Tabs
             value={activeTab}
             onChange={handleChange}
-            textColor="primary"
             indicatorColor="primary"
             centered
             className={styles.tabs}
