@@ -4,11 +4,12 @@ import Content from "@/models/content"
 const handler = async (req, res) => {
 
     const { pageId } = req.query;
-    const { content, tab } = req.body;
+    const { content, tab, user } = req.body;
 
     if (req.method === 'PATCH') {
         try {
-            const updatedContent = await Content.findOneAndUpdate({ pageId, tab }, { content, lastEdit: Date.now() })
+            const editor = user?.name ? user.name : ''
+            const updatedContent = await Content.findOneAndUpdate({ pageId, tab }, { content, lastEdit: Date.now(), editor })
             return res.status(200).send(updatedContent);
         }
         catch (error) {

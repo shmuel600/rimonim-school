@@ -6,11 +6,14 @@ import Context from '@/contexts/context'
 import StartEditButton from '@/components/Editor/StartEditButton'
 
 export default function DynamicContent({ pageName, tab = 'main', isHomePage = false, handleSroll }) {
-    const { pages, permissions } = React.useContext(Context);
-    const marqueeRef = React.useRef()
+
+    const { user, pages, permissions } = React.useContext(Context);
     const pageId = [...pages].filter(page => page.name === pageName)[0]?._id
     const [content, setContent] = React.useState('')
+    const [lastEdit, setLastEdit] = React.useState()
+    const [editedBy, setEditedBy] = React.useState('')
     const [isEditingActive, setIsEditingActive] = React.useState(false)
+    const marqueeRef = React.useRef()
     marqueeRef?.current?.start()
 
     React.useEffect(() => {
@@ -23,6 +26,8 @@ export default function DynamicContent({ pageName, tab = 'main', isHomePage = fa
                 });
                 const json = await fetchedContent.json();
                 setContent(json.content);
+                setLastEdit(new Date(json.lastEdit));
+                setEditedBy(json.editor);
             }
             catch (error) {
                 console.log(error.message, "could_not_create_content");
@@ -36,7 +41,7 @@ export default function DynamicContent({ pageName, tab = 'main', isHomePage = fa
             await fetch(`/api/content/${pageId}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ content, tab })
+                body: JSON.stringify({ content, tab, user })
             });
         }
         catch (error) {
@@ -69,6 +74,27 @@ export default function DynamicContent({ pageName, tab = 'main', isHomePage = fa
         return newStr
     }
 
+    const dateFormat = (date) => {
+
+        const day = date.getDate().toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })
+        const month = (date.getMonth() + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })
+        const year = date.getFullYear()
+        const fullDate = (`${day}/${month}/${year}`)
+
+        const hour = date.getHours().toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })
+        const minute = date.getMinutes().toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })
+        const time = (`${hour}:${minute}`)
+
+        const weekDays = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת']
+        const weekDay = weekDays[date.getDay()]
+
+        return (
+            <>
+                <b>{fullDate}</b> בשעה {time} (יום {weekDay})
+            </>
+        )
+    }
+
     return (
         <>
             {isEditingActive ?
@@ -77,8 +103,8 @@ export default function DynamicContent({ pageName, tab = 'main', isHomePage = fa
                     setContent={setContent}
                 />
                 :
-                (
-                    !isHomePage ?
+                <>
+                    {!isHomePage ?
                         <div
                             className={styles.preview}
                             dangerouslySetInnerHTML={{ __html: fixString(content) }}
@@ -104,7 +130,13 @@ export default function DynamicContent({ pageName, tab = 'main', isHomePage = fa
                                 </span>
                             </marquee>
                         </div>
-                )
+                    }
+                    {editedBy && lastEdit && user?.permissions === 'admin' &&
+                        <div style={{ direction: 'rtl', textAlign: 'right', color: 'darkgray', marginTop: '4rem' }}>
+                            <strong>{editedBy}</strong> ערכ/ה את תוכן הדף ב - {dateFormat(lastEdit)}
+                        </div>
+                    }
+                </>
             }
 
             {

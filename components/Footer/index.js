@@ -32,25 +32,25 @@ export default function Footer() {
                                 {`צור קשר`}
                             </div>
                             <Link href={'tel:08-6281306'} target="_blank" onMouseEnter={() => setActiveIcon('phone')} onMouseLeave={() => setActiveIcon('')} className={styles.footerButton}>
-                                <PhoneEnabledRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} className={`${activeIcon === 'phone' ? styles.icon : ''}`} />
+                                <PhoneEnabledRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} className={`${activeIcon === 'phone' ? styles.contactIcon : ''}`} />
                                 {`08-6281306`}
                             </Link>
                             <Link href={'mailto:geulim10@walla.co.il'} target="_blank" onMouseEnter={() => setActiveIcon('mail')} onMouseLeave={() => setActiveIcon('')} className={styles.footerButton}>
-                                <MailRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} className={`${activeIcon === 'mail' ? styles.icon : ''}`} />
+                                <MailRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} className={`${activeIcon === 'mail' ? styles.contactIcon : ''}`} />
                                 {`geulim10@walla.co.il`}
                             </Link>
                             <Link href={'https://www.google.com/maps/place/%D7%A8%D7%99%D7%9E%D7%95%D7%A0%D7%99%D7%9D+%D7%91%D7%99%D7%AA+%D7%A1%D7%A4%D7%A8%E2%80%AD/@31.2569719,34.7632206,15z/data=!4m6!3m5!1s0x150265dd51f975a1:0x4776afd8c0c869b5!8m2!3d31.2569719!4d34.7632206!16s%2Fg%2F11cly_0cn1?entry=ttu'} target="_blank" onMouseEnter={() => setActiveIcon('location')} onMouseLeave={() => setActiveIcon('')} className={styles.footerButton}>
-                                <PlaceRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} className={`${activeIcon === 'location' ? styles.icon : ''}`} />
+                                <PlaceRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} className={`${activeIcon === 'location' ? styles.contactIcon : ''}`} />
                                 {`ישראל ישעיהו 1, באר שבע`}
                             </Link>
                         </div>
                         <div className={styles.links}>
                             <div onClick={() => setPage('פרויקטים מיוחדים')} onMouseEnter={() => setActiveIcon('projects')} onMouseLeave={() => setActiveIcon('')} className={styles.footerButton}>
-                                <InsertEmoticonRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} className={`${activeIcon === 'projects' ? styles.icon : ''}`} />
+                                <InsertEmoticonRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} className={`${activeIcon === 'projects' ? styles.specialProjectsIcon : ''}`} />
                                 {`פרויקטים מיוחדים`}
                             </div>
                             <div onClick={() => setPage('חירום')} onMouseEnter={() => setActiveIcon('emergency')} onMouseLeave={() => setActiveIcon('')} className={styles.footerButton}>
-                                <WarningRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} className={`${activeIcon === 'emergency' ? styles.icon : ''}`} />
+                                <WarningRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} className={`${activeIcon === 'emergency' ? styles.emergencyIcon : ''}`} />
                                 {`חירום`}
                             </div>
                         </div>

@@ -145,10 +145,19 @@
     color: rgba(255, 255, 255, 0.8);
 }
 
-.icon {
+.contactIcon {
     animation: shake 1s ease-in infinite;
-    /* color: rgba(255, 255, 255, 0.7) !important; */
     color: #90caf9;
+}
+
+.emergencyIcon {
+    animation: shake 1s ease-in infinite;
+    color: #ca3434;
+}
+
+.specialProjectsIcon {
+    animation: shake 1s ease-in infinite;
+    color: #ffde4b;
 }
 
 @keyframes shake {

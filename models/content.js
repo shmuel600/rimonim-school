@@ -7,6 +7,7 @@ const content = new Schema({
     tab: { type: String },
     content: { type: String },
     lastEdit: { type: Date },
+    editor: { type: String },
 });
 
 mongoose.models = {};

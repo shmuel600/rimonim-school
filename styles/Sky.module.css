@@ -35,6 +35,7 @@
     font-family: 'Fredoka', system-ui;
     max-width: 180px;
     overflow: clip;
+    user-select: none;
 }
 
 .sun {
