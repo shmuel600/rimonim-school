@@ -37,21 +37,10 @@
     .credit {
         bottom: -4rem;
     }
-
-    .footer * {
-        font-size: small;
-    }
-}
-
-@media screen and (max-width: 400px) {
-    .footer * {
-        font-size: x-small;
-    }
 }
 
 .footerContent {
     display: flex;
-    /* justify-content: space-between; */
     direction: rtl;
     width: min(600px, 80%);
 }
@@ -117,6 +106,12 @@
 
     .footerContent hr {
         display: none;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .links>* {
+        width: 200px;
     }
 }
 

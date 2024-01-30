@@ -16,12 +16,12 @@ export default function Footer() {
                 className={styles.footer}
             >
                 <div className={styles.footerContent}>
-                    <div>
+                    <div className={styles.footerLinks}>
                         <div className={styles.contact}>
                             <div className={styles.links}>
                                 {`צור קשר`}
                             </div>
-                            <Link href={'tel:+972-08-6281306'} target="_blank">
+                            <Link href={'tel:08-6281306'} target="_blank">
                                 <PhoneEnabledRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} />
                                 {`08-6281306`}
                             </Link>
