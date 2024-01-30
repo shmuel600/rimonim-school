@@ -4,7 +4,7 @@ import Context from '@/contexts/context'
 
 import Permissions from '@/components/Admin/Permissions/index'
 import Pages from '@/components/Admin/Pages/index'
-import HomePageGallery from '@/components/Admin/HomePageGallery'
+import HomePageGallery from '@/components/Admin/Gallery'
 import Loader from '../Loader';
 
 export default function Admin({ pageTop, activeTab }) {

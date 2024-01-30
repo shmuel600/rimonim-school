@@ -20,4 +20,21 @@ const Loader = styled(Box)({
     }
 });
 
-export default Loader;
+const Loader2 = styled(Box)({
+    width: '48px',
+    height: '48px',
+    border: '5px solid #90caf9',
+    borderBottom: '5px solid transparent',
+    borderRadius: '50%',
+    display: 'inline-block',
+    boxSizing: 'border-box',
+    animation: 'rotate 1s linear infinite',
+    "@keyframes rotate": {
+        '0%': { transform: 'rotate(0deg)' },
+        '100%': { transform: 'rotate(360deg)' }
+    }
+});
+
+export default function Load({ fixed = true }) {
+    return fixed ? <Loader /> : <Loader2 />;
+};
