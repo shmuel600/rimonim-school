@@ -3,8 +3,8 @@ import styles from '@/styles/Footer.module.css'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import Link from "next/link"
 import PhoneEnabledRoundedIcon from '@mui/icons-material/PhoneEnabledRounded'
-import Groups2RoundedIcon from '@mui/icons-material/Groups2Rounded'
-import SegmentRoundedIcon from '@mui/icons-material/SegmentRounded'
+import MailRoundedIcon from '@mui/icons-material/MailRounded'
+import PlaceRoundedIcon from '@mui/icons-material/PlaceRounded'
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded'
 import InsertEmoticonRoundedIcon from '@mui/icons-material/InsertEmoticonRounded'
 
@@ -16,26 +16,33 @@ export default function Footer() {
                 className={styles.footer}
             >
                 <div className={styles.footerContent}>
-                    <div className={styles.links}>
-                        <Link href={'https://wa.me/972507721545'} target="_blank">
-                            <PhoneEnabledRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} />
-                            {`צור קשר`}
-                        </Link>
-                        <div>
-                            <Groups2RoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} />
-                            {`צוות בית הספר`}
+                    <div>
+                        <div className={styles.contact}>
+                            <div className={styles.links}>
+                                {`צור קשר`}
+                            </div>
+                            <Link href={'tel:+972-08-6281306'} target="_blank">
+                                <PhoneEnabledRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} />
+                                {`08-6281306`}
+                            </Link>
+                            <Link href={'mailto:geulim10@walla.co.il'} target="_blank">
+                                <MailRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} />
+                                {`geulim10@walla.co.il`}
+                            </Link>
+                            <Link href={'https://www.google.com/maps/place/%D7%A8%D7%99%D7%9E%D7%95%D7%A0%D7%99%D7%9D+%D7%91%D7%99%D7%AA+%D7%A1%D7%A4%D7%A8%E2%80%AD/@31.2569719,34.7632206,15z/data=!4m6!3m5!1s0x150265dd51f975a1:0x4776afd8c0c869b5!8m2!3d31.2569719!4d34.7632206!16s%2Fg%2F11cly_0cn1?entry=ttu'} target="_blank">
+                                <PlaceRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} />
+                                {`ישראל ישעיהו 1, באר שבע`}
+                            </Link>
                         </div>
-                        <div>
-                            <SegmentRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} />
-                            {`תקנון בית הספר`}
-                        </div>
-                        <div>
-                            <WarningRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} />
-                            {`חירום`}
-                        </div>
-                        <div>
-                            <InsertEmoticonRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} />
-                            {`פרויקטים מיוחדים`}
+                        <div className={styles.links}>
+                            <div>
+                                <InsertEmoticonRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} />
+                                {`פרויקטים מיוחדים`}
+                            </div>
+                            <div>
+                                <WarningRoundedIcon fontSize='smaller' sx={{ mb: -0.5, ml: 1.5, mr: 0 }} />
+                                {`חירום`}
+                            </div>
                         </div>
                     </div>
                     <hr />
