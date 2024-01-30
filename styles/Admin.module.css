@@ -58,6 +58,7 @@
 
 .clickable {
   cursor: pointer;
+  user-select: none;
 }
 
 .row {
@@ -191,6 +192,7 @@
 
 .detailsButton {
   cursor: pointer;
+  user-select: none;
   width: fit-content;
   background: transparent;
   border-radius: 5px;
@@ -275,6 +277,7 @@
 
 .pagesTab {
   cursor: pointer;
+  user-select: none;
   color: rgb(73, 84, 99);
 }
 
