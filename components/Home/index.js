@@ -63,7 +63,7 @@ export default function Home() {
                     עדכונים שוטפים
                 </h1>
 
-                <div style={{ margin: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <div style={{ margin: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                     <DynamicContent
                         pageName={'home'}
                         isHomePage={true}
