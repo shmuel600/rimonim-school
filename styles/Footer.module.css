@@ -147,12 +147,13 @@
 
 .contactIcon {
     animation: shake 1s ease-in infinite;
-    color: #90caf9;
+    /* color: #90caf9; */
+    color: #2aa7f2;
 }
 
 .emergencyIcon {
     animation: shake 1s ease-in infinite;
-    color: #ca3434;
+    color: rgb(248, 95, 95);
 }
 
 .specialProjectsIcon {
