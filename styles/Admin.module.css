@@ -36,6 +36,7 @@
   border-radius: 0.5rem;
   padding: 0.5rem;
   color: white;
+  user-select: none;
 }
 
 .exitToHomePageButton:hover {
@@ -225,6 +226,7 @@
   color: lightgray;
   animation: menuEnter 0.4s ease-in-out;
   padding: 0.2rem 0.5rem;
+  user-select: none;
 }
 
 .hasPermission {
@@ -293,6 +295,7 @@
 
 .modal {
   animation: modalEnter 0.2s ease-in-out;
+  user-select: none;
 }
 
 .modalContent {

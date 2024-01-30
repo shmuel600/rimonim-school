@@ -36,6 +36,17 @@
 
     .credit {
         bottom: -4rem;
+        font-size: small;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .credit {
+        font-size: x-small;
+    }
+
+    .credit>* {
+        margin: 0.3rem;
     }
 }
 
