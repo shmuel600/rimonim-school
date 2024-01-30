@@ -76,7 +76,9 @@ export default function Footer() {
 
                 </div>
 
-                <div style={{ direction: 'rtl', color: 'rgba(255,255,255,0.1)' }}>האתר הוכן ע"י:</div>
+                <div style={{ direction: 'rtl', color: 'rgba(255,255,255,0.1)' }}>
+                    {`האתר הוכן ע"י:`}
+                </div>
                 <div className={styles.credit}>
                     <span>{`© 2024 `}</span>
                     <span>{` • `}</span>
