@@ -12,6 +12,7 @@ body {
   overflow-x: clip;
   background-color: whitesmoke;
   text-align: center;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 marquee {
