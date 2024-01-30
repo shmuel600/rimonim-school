@@ -12,6 +12,7 @@ export default function DynamicContent({ pageName, tab = 'main', isHomePage = fa
     const [content, setContent] = React.useState('')
     const [lastEdit, setLastEdit] = React.useState()
     const [editedBy, setEditedBy] = React.useState('')
+    const [updated, setUpdated] = React.useState(false)
     const [isEditingActive, setIsEditingActive] = React.useState(false)
     const marqueeRef = React.useRef()
     marqueeRef?.current?.start()
@@ -38,11 +39,15 @@ export default function DynamicContent({ pageName, tab = 'main', isHomePage = fa
 
     const handleSave = async () => {
         try {
-            await fetch(`/api/content/${pageId}`, {
+            const updatedContent = await fetch(`/api/content/${pageId}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ content, tab, user })
             });
+            const json = await updatedContent.json();
+            setLastEdit(new Date(json.lastEdit))
+            setEditedBy(json.editor)
+            setUpdated(true)
         }
         catch (error) {
             console.log(error.message, "could_not_update_content");
@@ -133,7 +138,7 @@ export default function DynamicContent({ pageName, tab = 'main', isHomePage = fa
                     }
                     {editedBy && lastEdit && user?.permissions === 'admin' &&
                         <div style={{ direction: 'rtl', textAlign: 'right', color: 'darkgray', marginTop: '4rem' }}>
-                            <strong>{editedBy}</strong> ערכ/ה את תוכן הדף ב - {dateFormat(lastEdit)}
+                            <strong>{editedBy}</strong> ערכ/ה את תוכן הדף ב - {dateFormat(updated ? new Date() : lastEdit)}
                         </div>
                     }
                 </>
