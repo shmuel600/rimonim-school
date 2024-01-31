@@ -51,7 +51,7 @@
     }
 
     to {
-        box-shadow: -150px 0 200px 150px rgba(0, 0, 0, 0.8), 100px 0px 150px -95px rgba(0, 0, 0, 0.8) inset;
+        box-shadow: -150px 0 200px 150px rgba(0, 0, 0, 0.8), 100px 0px 150px -95px rgba(0, 0, 0, 0.78) inset;
     }
 }
 
@@ -61,7 +61,7 @@
     }
 
     to {
-        box-shadow: 150px 0 200px 150px rgba(0, 0, 0, 0.8), -100px 0px 150px -90px rgba(0, 0, 0, 0.8) inset;
+        box-shadow: 150px 0 200px 150px rgba(0, 0, 0, 0.8), -100px 0px 150px -90px rgba(0, 0, 0, 0.72) inset;
     }
 }
 
