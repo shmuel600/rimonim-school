@@ -59,7 +59,6 @@ export default function Gallery() {
     const deleteImage = async (id, url) => {
         setLoading(id)
         const filename = (url.split('/')[7] + '/' + url.split('/')[8]).split('.')[0]
-        alert('Delete' + filename)
         try {
             const content = await fetch(`api/image/${id}`, {
                 method: 'DELETE',

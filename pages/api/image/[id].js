@@ -23,7 +23,7 @@ const handler = async (req, res) => {
             return res.status(200).send(gallery);
         }
         catch (error) {
-            console.log('Error deleting image:', error);
+            alert('Error deleting image:', error);
             return res.status(500).send("image_delete", error.message);
         }
     }
