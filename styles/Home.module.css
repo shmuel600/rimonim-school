@@ -12,7 +12,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 6rem;
+  padding: 4rem;
   width: 100%;
 }
 
@@ -88,5 +88,9 @@
 @media screen and (max-width: 650px) {
   .picture {
     padding-bottom: 12rem;
+  }
+
+  .page {
+    padding: 4rem 1rem;
   }
 }

@@ -1,5 +1,5 @@
 
-import styles from '@/styles/Gallery.module.css'
+import styles from '@/styles/Admin.module.css'
 import * as React from 'react'
 import { styled } from '@mui/material/styles'
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
@@ -12,7 +12,7 @@ import Image from 'next/image'
 const Input = styled('input')({
     display: 'none',
 });
-export default function HomePageGallery() {
+export default function Gallery() {
 
     const imageInputRef = React.useRef();
     const [gallery, setGallery] = React.useState([])
@@ -73,7 +73,7 @@ export default function HomePageGallery() {
     }
 
     return (
-        <div className={styles.page}>
+        <div className={styles.galleryContainer}>
             <div className={styles.gallery}>
 
                 {gallery.map(image =>

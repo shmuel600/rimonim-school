@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import * as React from 'react'
 import { useVisible } from '@/hooks/useVisible'
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
+import Gallery from '@/components/Home/Gallery'
 
 const DynamicContent = dynamic(
     () => import('@/components/DynamicContent/DynamicContent'),
@@ -57,13 +58,13 @@ export default function Home() {
                 </div>
             }
 
-            <div className={styles.page} ref={updates} style={{ padding: '4rem', scrollMargin: '4rem', minHeight: '60vh' }}>
+            <div className={styles.page} ref={updates} style={{ scrollMargin: '4rem', minHeight: '60vh' }}>
 
                 <h1>
                     עדכונים שוטפים
                 </h1>
 
-                <div style={{ margin: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                <div style={{ margin: '1rem', marginBottom: '4rem', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                     <DynamicContent
                         pageName={'home'}
                         isHomePage={true}
@@ -71,31 +72,13 @@ export default function Home() {
                     />
                 </div>
 
-                {/* <div
-                    style={{ padding: '2rem 12%', scrollMargin: '4rem', color: 'gray', direction: 'rtl', zIndex: 1, marginTop: '1rem' }}
-                >
-                    {
-                        `בית הספר עושה כל שביכולתו לשמירת זכות יוצרים וזכות הפרט בחומרים המצויים באתר הבית ספרי.`
-                    }
-                    <br />
-                    {
-                        `למרות המעקב העקבי והרצוף אחרי הפעילות באתר בית הספר, 
-                        ייתכן שחומר או פריט מידע מסוים, 
-                        שהועלה לאתר באמצעות עורכי משנה (מורים ו/או תלמידים), 
-                        מפר באופן כלשהו את זכות היוצרים ו/או זכות הפרט.`
-                    }
-                    <br />
-                    {
-                        `כל פנייה בנדון תזכה למרב תשומת הלב ולפעולה מידית בהתאם לצורך.`
-                    }
-                    <br />
-                    {
-                        `בית הספר מתחייב להסיר כל פריט המפר זכות יוצרים ו/או זכות הפרט בזמן סביר ממועד קבלת הפנייה, 
-                        לאחר שבדק ומצא שהיא מוצדקת, 
-                        והוא מתחייב ליידע את האחראי להפרה זו ולהתריע בפניו על העלאת חומרים אלה, 
-                        כדי למנוע הישנות מקרים שכאלה.`
-                    }
-                </div> */}
+                <h1>
+                    תמונות מאירועי בית הספר
+                </h1>
+
+                <div style={{ margin: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Gallery />
+                </div>
 
             </div>
 
