@@ -13,5 +13,10 @@ module.exports = {
       'res.cloudinary.com',
       'lh3.googleusercontent.com'
     ],
-  }
+  },
+  api: {
+    bodyParser: {
+      sizeLimit: '100mb',
+    },
+  },
 }

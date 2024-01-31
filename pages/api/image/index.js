@@ -6,7 +6,7 @@ import Image from '@/models/image'
 export const config = {
     api: {
         bodyParser: {
-            sizeLimit: '10mb',
+            sizeLimit: '100mb',
         },
     },
 }

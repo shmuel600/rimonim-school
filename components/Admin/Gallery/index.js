@@ -3,8 +3,11 @@ import styles from '@/styles/Gallery.module.css'
 import * as React from 'react'
 import { styled } from '@mui/material/styles'
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
+import FullscreenRoundedIcon from '@mui/icons-material/FullscreenRounded'
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded'
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 import Loader from '@/components/Loader'
+import Image from 'next/image'
 
 const Input = styled('input')({
     display: 'none',
@@ -13,6 +16,7 @@ export default function HomePageGallery() {
 
     const imageInputRef = React.useRef();
     const [gallery, setGallery] = React.useState([])
+    const [preview, setPreview] = React.useState('')
     const [hoveredImage, setHoveredImage] = React.useState('')
     const [loading, setLoading] = React.useState('')
 
@@ -44,7 +48,11 @@ export default function HomePageGallery() {
                 setGallery(fetchedGallery);
                 setLoading('')
             }
-            catch (error) { console.log(error.message) }
+            catch (error) {
+                console.log(error)
+                alert('הייתה בעיה בהעלאת התמונה, ייתכן והתמונה שוקלת יותר מידי')
+                setLoading('')
+            }
         };
     };
 
@@ -75,12 +83,22 @@ export default function HomePageGallery() {
                         style={{ background: `url(${image.url})` }}
                         onMouseEnter={() => setHoveredImage(image.url)}
                         onMouseLeave={() => setHoveredImage('')}
-                        onClick={() => deleteImage(image._id, image.url)}
+
                     >
                         {loading === image._id ?
                             <Loader fixed={false} />
                             :
-                            (hoveredImage === image.url && <DeleteRoundedIcon fontSize='large' className={styles.icon} />)
+                            hoveredImage === image.url &&
+                            <>
+                                <FullscreenRoundedIcon
+                                    onClick={() => setPreview(image.url)}
+                                    fontSize='large' className={styles.icon} sx={{ m: 1 }}
+                                />
+                                <DeleteRoundedIcon
+                                    onClick={() => deleteImage(image._id, image.url)}
+                                    fontSize='large' className={styles.icon} sx={{ m: 1 }}
+                                />
+                            </>
                         }
                     </div>
                 )}
@@ -101,9 +119,31 @@ export default function HomePageGallery() {
                     {loading === 'add' ?
                         <Loader fixed={false} />
                         :
-                        <AddRoundedIcon className={hoveredImage === 'addNew' ? styles.icon : ''} sx={{ fontSize: '3rem' }} />
+                        (loading === 'error' ?
+                            "error"
+                            :
+                            <AddRoundedIcon className={hoveredImage === 'addNew' ? styles.icon : ''} sx={{ fontSize: '3rem' }} />
+                        )
                     }
                 </div>
+
+                {preview !== '' &&
+                    <div
+                        style={{ width: '100%', height: '100%', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', zIndex: '1000', background: 'rgba(0, 0, 0, 0.5)' }}
+                        onClick={() => setPreview('')}
+                    >
+                        <div style={{ width: '60%', height: '60%', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }}>
+                            <CloseRoundedIcon
+                                onClick={() => setPreview('')} fontSize='large'
+                                sx={{ m: 2, p: 0.5, color: 'whitesmoke', zIndex: '999', position: 'fixed', right: '0', boxShadow: 'rgba(0,0,0,0.2) 0 0 0 1rem inset', borderRadius: '50%' }}
+                            />
+                            <Image
+                                src={preview} fill alt="preview" objectFit='cover' className={styles.previewImage}
+                                onClick={e => e.stopPropagation()}
+                            />
+                        </div>
+                    </div>
+                }
 
             </div>
         </div>

@@ -16,12 +16,9 @@
     height: 180px;
     border-radius: 0.5rem;
     margin: 0.2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
-    user-select: none;
-    cursor: pointer;
 }
 
 .image {
@@ -33,10 +30,13 @@
 .addImage {
     border: 1px solid rgba(255, 255, 255, 0.6);
     font-size: x-large;
+    user-select: none;
+    cursor: pointer;
 }
 
 .image:hover {
     background-color: rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .addImage:hover,
@@ -48,6 +48,8 @@
 
 .icon {
     color: whitesmoke;
+    user-select: none;
+    cursor: pointer;
     animation: icon-enter 0.4s ease-in-out;
     animation-fill-mode: forwards;
 }
@@ -80,5 +82,21 @@
     100% {
         border: 2px solid #90caf9;
         transform: scale(1.005);
+    }
+}
+
+.previewImage {
+    animation: enter-preview 0.2s ease-in-out;
+}
+
+@keyframes enter-preview {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
     }
 }
