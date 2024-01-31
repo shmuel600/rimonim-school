@@ -8,9 +8,6 @@ import SyncAltRoundedIcon from '@mui/icons-material/SyncAltRounded'
 
 export default function SetPermissions({ viewedUser, chosenUser, setChosenUser, users, handleSave, hideSaveButton }) {
 
-    // on accordion close, reset chosen user (so when opened again, default choice will be chosen)
-    // React.useEffect(() => { hideSaveButton && setChosenUser('') }, [hideSaveButton, setChosenUser])
-
     const handleChange = (event) => {
         setChosenUser(event.target.value);
     };
