@@ -73,7 +73,7 @@ export default function Home() {
                 </div>
 
                 <h1>
-                    תמונות מאירועי בית הספר
+                    תמונות מהווי בית הספר
                 </h1>
 
                 <div style={{ margin: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
