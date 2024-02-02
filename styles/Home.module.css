@@ -94,3 +94,21 @@
     padding: 4rem 1rem;
   }
 }
+
+.button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  /* font-weight: bold; */
+  color: white;
+  /* border: 1px solid #ccc; */
+  background: #90caf9;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.2s ease-in-out;
+}
+
+.button:hover {
+  background: #2aa7f2;
+  color: whitesmoke;
+  transform: scale(0.95);
+}

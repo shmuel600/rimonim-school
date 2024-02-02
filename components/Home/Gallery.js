@@ -1,6 +1,4 @@
 import * as React from 'react'
-import styles from '@/styles/Gallery.module.css'
-import Image from 'next/image'
 import Carousel from './Carousel'
 
 export default function Gallery() {

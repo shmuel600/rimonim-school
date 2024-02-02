@@ -1,11 +1,13 @@
 'use client'
 import dynamic from 'next/dynamic'
 import styles from '@/styles/Home.module.css'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import * as React from 'react'
+import Context from '@/contexts/context'
+import { useRouter } from 'next/router'
 import { useVisible } from '@/hooks/useVisible'
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import Gallery from '@/components/Home/Gallery'
 
 const DynamicContent = dynamic(
@@ -15,7 +17,9 @@ const DynamicContent = dynamic(
 
 export default function Home() {
 
+    const router = useRouter()
     const updates = React.useRef()
+    const { user, permissions } = React.useContext(Context);
     const isUpdatesVisible = useVisible(updates)
 
     const handleSroll = () => {
@@ -79,6 +83,19 @@ export default function Home() {
                 <div style={{ margin: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Gallery />
                 </div>
+
+                {user && permissions === 'admin' &&
+                    <div
+                        className={styles.button}
+                        onClick={() => {
+                            router.push({
+                                pathname: '/admin',
+                                query: { editGallery: true },
+                            }, 'admin')
+                        }}>
+                        עריכה
+                    </div>
+                }
 
             </div>
 

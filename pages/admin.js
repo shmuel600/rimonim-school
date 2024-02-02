@@ -9,10 +9,9 @@ import Admin from '@/components/Admin/index'
 export default function AdminPage() {
 
     const router = useRouter()
-    const { user, permissions } = React.useContext(Context);
-
     const pageTop = React.useRef()
-    const [activeTab, setActiveTab] = React.useState(0);
+    const { user, permissions } = React.useContext(Context);
+    const [activeTab, setActiveTab] = React.useState(router.query?.editGallery ? 2 : 0);
 
     React.useEffect(() => {
         if (user && permissions !== 'admin') {

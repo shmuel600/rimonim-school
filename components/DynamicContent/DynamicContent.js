@@ -137,7 +137,7 @@ export default function DynamicContent({ pageName, tab = 'main', isHomePage = fa
                         </div>
                     }
                     {editedBy && lastEdit && user?.permissions === 'admin' &&
-                        <div style={{ direction: 'rtl', textAlign: 'right', color: 'darkgray', marginTop: '4rem' }}>
+                        <div style={{ direction: 'rtl', textAlign: 'right', color: 'darkgray', marginTop: '4rem', maxWidth: '95%' }}>
                             <strong>{editedBy}</strong> ערכ/ה את תוכן הדף ב - {dateFormat(updated ? new Date() : lastEdit)}
                         </div>
                     }

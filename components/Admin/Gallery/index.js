@@ -129,10 +129,10 @@ export default function Gallery() {
 
                 {preview !== '' &&
                     <div
-                        style={{ width: '100%', height: '100%', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', zIndex: '1000', background: 'rgba(0, 0, 0, 0.5)' }}
+                        className={styles.previewScreen}
                         onClick={() => setPreview('')}
                     >
-                        <div style={{ width: '60%', height: '60%', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }}>
+                        <div className={styles.previewContainer}>
                             <CloseRoundedIcon
                                 onClick={() => setPreview('')} fontSize='large'
                                 sx={{ m: 2, p: 0.5, color: 'whitesmoke', zIndex: '999', position: 'fixed', right: '0', boxShadow: 'rgba(0,0,0,0.2) 0 0 0 1rem inset', borderRadius: '50%' }}
