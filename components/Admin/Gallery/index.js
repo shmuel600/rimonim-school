@@ -138,7 +138,7 @@ export default function Gallery() {
                                 sx={{ m: 2, p: 0.5, color: 'whitesmoke', zIndex: '999', position: 'fixed', right: '0', boxShadow: 'rgba(0,0,0,0.2) 0 0 0 1rem inset', borderRadius: '50%' }}
                             />
                             <Image
-                                src={preview} fill alt="preview" objectFit='cover' className={styles.previewImage}
+                                src={preview} fill alt="preview" className={styles.previewImage}
                                 onClick={e => e.stopPropagation()}
                             />
                         </div>
