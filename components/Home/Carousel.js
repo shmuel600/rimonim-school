@@ -63,17 +63,12 @@ const Carousel = ({ images }) => {
             <div style={imageContainerStyles} className={`${styles.imageContainer} ${direction}`}>
                 {images.map((image, index) => (
                     <div key={index} className={`${styles.slide} ${index === currentIndex ? styles.slideActive : ''}`}>
-                        <Image
-                            src={image.url}
-                            alt={`Slide ${index + 1}`}
-                            width={500}
-                            height={350}
-                            objectFit="cover"
-                            style={{ borderRadius: '1rem' }}
-                            // onMouseEnter={() => clearInterval(interval)}
-                            // onMouseLeave={() => { }}
-                            onClick={() => clearInterval(interval)}
-                        />
+                        <div>
+                            <div
+                                className={styles.image}
+                                style={{ background: `url(${image.url})` }}>
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>
