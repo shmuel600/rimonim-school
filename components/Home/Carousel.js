@@ -67,7 +67,16 @@ const Carousel = ({ images }) => {
                         <div>
                             <div
                                 className={styles.image}
-                                style={{ background: `url(${image.url})` }}>
+                                style={{
+                                    background: `url(${image.url})`,
+                                    borderRadius: '1rem',
+                                    width: '500px',
+                                    height: '350px',
+                                    backgroundSize: 'contain',
+                                    backgroundPosition: 'center',
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundColor: '#101115',
+                                }}>
                             </div>
                         </div>
                     </div>
