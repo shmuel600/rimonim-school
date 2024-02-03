@@ -71,6 +71,10 @@ export default function Header() {
                                                 setPage(`/about/${page.name}`)
                                                 setMenu('')
                                             }}
+                                            onTouchStart={() => {
+                                                setPage(`/about/${page.name}`)
+                                                setMenu('')
+                                            }}
                                         >
                                             {page.name}
                                         </button>
