@@ -56,8 +56,6 @@ export default function Header() {
 
                 <span
                     onMouseOver={() => setMenu('אודות')}
-                    onTouchStart={() => setMenu('אודות')}
-                    style={{ zIndex: '10' }}
                     className={styles.headerButton}>
                     <KeyboardArrowDownOutlinedIcon sx={{ fontSize: '16px', m: 0, p: 0, pr: 0.5 }} />
                     אודות
@@ -70,10 +68,6 @@ export default function Header() {
                                         <button
                                             key={page._id}
                                             onClick={() => {
-                                                setPage(`/about/${page.name}`)
-                                                setMenu('')
-                                            }}
-                                            onTouchStart={() => {
                                                 setPage(`/about/${page.name}`)
                                                 setMenu('')
                                             }}
