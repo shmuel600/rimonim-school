@@ -52,14 +52,7 @@ export default function Home() {
                     }}>
                         עדכונים שוטפים
                     </h2>
-                    <KeyboardArrowDownOutlinedIcon
-                        className={styles.arrowDown}
-                        sx={{
-                            fontSize: '60px',
-                            position: 'fixed',
-                            bottom: '2%',
-                            color: 'white',
-                        }} />
+                    <KeyboardArrowDownOutlinedIcon className={styles.arrowDown} />
                 </div>
             }
 
@@ -97,6 +90,12 @@ export default function Home() {
                         עריכה
                     </div>
                 }
+
+                <button
+                    onClick={() => alert('it works')}
+                >
+                    click to test
+                </button>
 
             </div>
 

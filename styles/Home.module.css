@@ -72,6 +72,10 @@
 }
 
 .arrowDown {
+  font-size: 60px;
+  position: fixed;
+  bottom: 2%;
+  color: white;
   animation: mover 0.5s infinite alternate;
 }
 
