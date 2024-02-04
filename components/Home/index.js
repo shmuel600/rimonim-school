@@ -93,6 +93,12 @@ export default function Home() {
 
                 <button
                     onClick={() => alert('it works')}
+                    onTouchStart={() => alert('it works')}
+                    onFocus={() => alert('it works')}
+                    onMouseEnter={() => alert('it works')}
+                    onMouseDown={() => alert('it works')}
+                    onTap={() => alert('it works')}
+
                 >
                     click to test
                 </button>
