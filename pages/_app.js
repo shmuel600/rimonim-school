@@ -51,14 +51,6 @@ export default function App({
   const [onBadLoad, setOnBadLoad] = React.useState(<Loader />)
 
   React.useEffect(() => {
-    const handleResize = () => {
-      const viewportWidth = window.innerWidth;
-      viewportWidth < 320 && alert('Viewport Width smaller than 320');
-    };
-    handleResize();
-  }, [])
-
-  React.useEffect(() => {
     const fetchPages = async () => {
       try {
         const fetchedPages = await fetch("/api/page", {
