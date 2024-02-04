@@ -52,6 +52,7 @@
   z-index: 1000;
   animation: fadeout 1.5s;
   animation-fill-mode: forwards;
+  pointer-events: none;
 }
 
 @keyframes fadeout {
@@ -62,6 +63,7 @@
   100% {
     opacity: 0%;
     display: none;
+    z-index: -1 !important;
   }
 }
 
