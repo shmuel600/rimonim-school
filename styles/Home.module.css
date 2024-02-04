@@ -24,10 +24,11 @@
   padding: 6rem;
   padding-bottom: 25vh;
   /* background-image: url("https://www.bigissuenorth.com/wp-content/uploads/2018/09/shutterstock_303888209_bigissuenorth.jpg"); */
-  background-image: url("https://cdn.pixabay.com/photo/2017/10/07/05/33/pomegranate-2825556_960_720.jpg");
+  /* background-image: url("https://cdn.pixabay.com/photo/2017/10/07/05/33/pomegranate-2825556_960_720.jpg"); */
+  background-image: url("https://res.cloudinary.com/dabdiidi4/image/upload/v1707055761/school2_ryyoyh.png");
   background-attachment: fixed;
   background-blend-mode: overlay;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.2);
   background-size: cover;
   background-position: center;
   min-width: 100vw;
