@@ -40,7 +40,7 @@ export default function Home() {
             </div>
 
             {!isUpdatesVisible &&
-                <div
+                <button
                     style={{ display: 'flex', justifyContent: 'center', transitionDuration: '0.4s', cursor: 'pointer' }}
                     onClick={handleSroll}
 
@@ -60,7 +60,7 @@ export default function Home() {
                             bottom: '2%',
                             color: 'white',
                         }} />
-                </div>
+                </button>
             }
 
             <div className={styles.page} ref={updates} style={{ scrollMargin: '4rem', minHeight: '60vh' }}>
