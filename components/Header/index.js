@@ -56,6 +56,9 @@ export default function Header() {
 
                 <span
                     onMouseOver={() => setMenu('אודות')}
+                    onMouseEnter={() => setMenu('אודות')}
+                    onMouseDown={() => setMenu('אודות')}
+                    onFocus={() => setMenu('אודות')}
                     className={styles.headerButton}>
                     <KeyboardArrowDownOutlinedIcon sx={{ fontSize: '16px', m: 0, p: 0, pr: 0.5 }} />
                     אודות
