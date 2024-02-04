@@ -69,7 +69,7 @@ const Carousel = ({ images }) => {
                                 className={styles.image}
                                 style={{
                                     background: `url(${image.url})`,
-                                    borderRadius: '1rem',
+                                    // borderRadius: '1rem',
                                     width: '500px',
                                     height: '350px',
                                     backgroundSize: 'contain',
