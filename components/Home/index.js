@@ -48,6 +48,13 @@ export default function Home() {
                     onMouseEnter={handleSroll}
                     onChange={handleSroll}
                     onTouchStart={handleSroll}
+                    tabIndex={0}
+                    onKeyDown={e => {
+                        if (e.key === ' ') {
+                            console.log('it worked');
+                            handleSroll()
+                        }
+                    }}
                 >
                     <h2 style={{
                         position: 'fixed',
