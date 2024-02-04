@@ -43,17 +43,7 @@ export default function Home() {
                 <div
                     style={{ display: 'flex', justifyContent: 'center', transitionDuration: '0.4s', cursor: 'pointer' }}
                     onClick={handleSroll}
-                    onFocus={handleSroll}
-                    onMouseDown={handleSroll}
-                    onChange={handleSroll}
-                    onTouchStart={handleSroll}
-                    tabIndex={0}
-                    onKeyDown={e => {
-                        if (e.key === ' ') {
-                            alert('it worked');
-                            handleSroll()
-                        }
-                    }}
+
                 >
                     <h2 style={{
                         position: 'fixed',
