@@ -50,7 +50,13 @@ export default function App({
   const [user, setUser] = React.useState()
   const [onBadLoad, setOnBadLoad] = React.useState(<Loader />)
 
-
+  React.useEffect(() => {
+    const handleResize = () => {
+      const viewportWidth = window.innerWidth;
+      viewportWidth < 600 && alert('Viewport Width:', viewportWidth);
+    };
+    handleResize();
+  }, [])
 
   React.useEffect(() => {
     const fetchPages = async () => {
