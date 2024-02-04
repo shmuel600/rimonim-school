@@ -91,17 +91,6 @@ export default function Home() {
                     </div>
                 }
 
-                <button
-                    onClick={() => alert('click')}
-                    onTouchStart={() => alert('touch start')}
-                    onTouchEnd={() => alert('touch end')}
-                    onFocus={() => alert('focus')}
-                    onMouseEnter={() => alert('mouse enter')}
-                    onMouseDown={() => alert('mouse down')}
-                >
-                    Click to test
-                </button>
-
             </div>
 
             <Footer />
