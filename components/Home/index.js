@@ -43,6 +43,11 @@ export default function Home() {
                 <div
                     style={{ display: 'flex', justifyContent: 'center', transitionDuration: '0.4s', cursor: 'pointer' }}
                     onClick={handleSroll}
+                    onFocus={handleSroll}
+                    onMouseDown={handleSroll}
+                    onMouseEnter={handleSroll}
+                    onChange={handleSroll}
+                    onTouchStart={handleSroll}
                 >
                     <h2 style={{
                         position: 'fixed',
