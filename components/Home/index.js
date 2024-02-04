@@ -45,13 +45,12 @@ export default function Home() {
                     onClick={handleSroll}
                     onFocus={handleSroll}
                     onMouseDown={handleSroll}
-                    onMouseEnter={handleSroll}
                     onChange={handleSroll}
                     onTouchStart={handleSroll}
                     tabIndex={0}
                     onKeyDown={e => {
                         if (e.key === ' ') {
-                            console.log('it worked');
+                            alert('it worked');
                             handleSroll()
                         }
                     }}
