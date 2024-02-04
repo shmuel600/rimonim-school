@@ -53,7 +53,7 @@ export default function App({
   React.useEffect(() => {
     const handleResize = () => {
       const viewportWidth = window.innerWidth;
-      viewportWidth < 600 && alert('Viewport Width:', viewportWidth);
+      viewportWidth < 320 && alert('Viewport Width smaller than 320');
     };
     handleResize();
   }, [])
