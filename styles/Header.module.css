@@ -115,8 +115,7 @@
 
   .openMenu>*,
   .headerButton {
-    font-size: small;
-    margin: 0 0.02rem;
+    font-size: medium;
     padding: 0.2rem 0.3rem;
   }
 }
@@ -125,7 +124,7 @@
 
   .openMenu>*,
   .headerButton {
-    font-size: x-small;
+    font-size: small;
   }
 }
 
