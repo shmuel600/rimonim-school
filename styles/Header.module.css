@@ -127,13 +127,13 @@
   }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 450px) {
   .logo {
     display: none;
   }
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 380px) {
 
   .openMenu>*,
   .headerButton {
