@@ -10,6 +10,7 @@ export default function DynamicContent({ pageName, tab = 'main', isHomePage = fa
     const { user, pages, permissions } = React.useContext(Context);
     const pageId = [...pages].filter(page => page.name === pageName)[0]?._id
     const [content, setContent] = React.useState('')
+    const [originalContent, setOriginalContent] = React.useState('');
     const [lastEdit, setLastEdit] = React.useState()
     const [editedBy, setEditedBy] = React.useState('')
     const [updated, setUpdated] = React.useState(false)
@@ -27,8 +28,10 @@ export default function DynamicContent({ pageName, tab = 'main', isHomePage = fa
                 });
                 const json = await fetchedContent.json();
                 setContent(json.content);
+                setOriginalContent(json.content); // Store original content for comparison
                 setLastEdit(new Date(json.lastEdit));
                 setEditedBy(json.editor);
+
             }
             catch (error) {
                 console.log(error.message, "could_not_create_content");
@@ -38,19 +41,21 @@ export default function DynamicContent({ pageName, tab = 'main', isHomePage = fa
     }, [pageId, pageName, tab])
 
     const handleSave = async () => {
-        try {
-            const updatedContent = await fetch(`/api/content/${pageId}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ content, tab, user })
-            });
-            const json = await updatedContent.json();
-            setLastEdit(new Date(json.lastEdit))
-            setEditedBy(json.editor)
-            setUpdated(true)
-        }
-        catch (error) {
-            console.log(error.message, "could_not_update_content");
+        if (content !== originalContent) {
+            try {
+                const updatedContent = await fetch(`/api/content/${pageId}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ content, tab, user })
+                });
+                const json = await updatedContent.json();
+                setLastEdit(new Date(json.lastEdit))
+                setEditedBy(json.editor)
+                setUpdated(true)
+            }
+            catch (error) {
+                console.log(error.message, "could_not_update_content");
+            }
         }
         setIsEditingActive(false)
     }
